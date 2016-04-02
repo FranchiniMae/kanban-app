@@ -1,6 +1,6 @@
 angular
   .module('kanbanApp', [
-    'ui.router', 'satellizer', 'ngResource' ])
+    'ui.router', 'satellizer' ])
   .controller('MainController', MainController)
   .controller('HomeController', HomeController)
   .controller('LoginController', LoginController)

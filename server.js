@@ -5,6 +5,7 @@ var express = require('express'),
     hbs = require('hbs'),
     mongoose = require('mongoose'),
     auth = require('./resources/auth');
+    path = require('path');
 
 // require and load dotenv
 require('dotenv').load();
@@ -127,6 +128,6 @@ app.get('*', function (req, res) {
 /*
  * Listen on localhost:3000
  */
-app.listen(9000, function() {
-  console.log('server started');
+app.listen(3000, function() {
+  console.log('connected to port 3000');
 });

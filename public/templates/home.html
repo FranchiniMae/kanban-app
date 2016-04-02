@@ -1,11 +1,10 @@
-<h2>Kanban</h2>
+<h2>kanban</h2>
 <hr>
-<p ng-if="home.goals.length === 0">You currently do not have any goals.</p>
+<p ng-show="main.currentUser()" ng-if="home.goals.length === 0">No goals yet.</p>
 
 <div ng-if="home.goals.length > 0">
 	<div ng-repeat="goal in home.goals">
 		<p><strong>{{goal.title}}</strong></p><br>
-		<p>This is where the graphs will be</p>
 	</div>
 </div>
 
@@ -13,6 +12,5 @@
 	<br>
 	<h4>Add New Goal</h4>
 	<hr>
-	<p>This is where the add goal button will be</p>
 	<!-- TODO #15: Post Form here -->
 </div>
