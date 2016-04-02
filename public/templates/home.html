@@ -4,7 +4,9 @@
 
 <div ng-if="home.goals.length > 0">
 	<div ng-repeat="goal in home.goals">
-		<p><strong>{{goal.title}}</strong> - {{goal.goalDate | date: 'MMMM dd, yyyy'}}</p><br>
+		<a href="/goals/{{goal._id}}">{{goal.title}}</a>
+		 - {{goal.goalDate | date: 'MMMM dd, yyyy'}}</p>
+		{{goal.tasks.length}}<br>
 	</div>
 </div>
 

@@ -35,12 +35,12 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'HomeController',
       controllerAs: 'home'
     })
-    // .state('goals', {
-    //   url: '/goals{id}',
-    //   templateUrl: 'templates/goals.html',
-    //   controller: 'GoalsController',
-    //   controllerAs: 'goals'
-    // })
+    .state('goals', {
+      url: '/goals/{id}',
+      templateUrl: 'templates/goals.html',
+      controller: 'GoalsController',
+      controllerAs: 'goals'
+    })
     .state('signup', {
       url: '/signup',
       templateUrl: 'templates/signup.html',
@@ -114,17 +114,17 @@ function MainController (Account) {
 
 }
 
-// GoalsController.$inject = ["$http", "$stateParams", "goals"];
-// function GoalsController ($http, $stateParams, goals) {
-//   vm.goal = goals.goals[$stateParams.id];
-//   vm.addTask = function () {
-//   $http.post('/api/goals', vm.new_task)
-//     .then(function (response) {
-//       vm.new_task = {};
-//       vm.goal.tasks.push(response.data);
-//     });
-//   };
-// }
+GoalsController.$inject = ["$http", "$stateParams", "goals"];
+function GoalsController ($http, $stateParams, goals) {
+  vm.goal = goals.goals[$stateParams.id];
+  vm.addTask = function () {
+  $http.post('/api/goals', vm.new_task)
+    .then(function (response) {
+      vm.new_task = {};
+      vm.goal.tasks.push(response.data);
+    });
+  };
+}
 
 HomeController.$inject = ["$http"]; // minification protection
 function HomeController ($http) {
