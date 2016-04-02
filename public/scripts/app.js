@@ -118,6 +118,14 @@ function HomeController ($http) {
     .then(function (response) {
       vm.goals = response.data;
     });
+
+  vm.createGoal = function() {
+    $http.post('/api/goals', vm.new_goal)
+      .then(function (response){
+        vm.new_goal = {};
+        vm.goals.push(response.data);
+      });
+  };
 }
 
 LoginController.$inject = ["$location", "Account"]; // minification protection
