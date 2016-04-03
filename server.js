@@ -77,6 +77,27 @@ app.post('/api/goals', auth.ensureAuthenticated, function (req, res) {
   });
 });
 
+// app.get('/goals/:id', auth.ensureAuthenticated, function (req, res){
+//   var id = req.params.id;
+//   Goal.findById({_id: id}, function (err, goal) {
+//     if (err) console.log(err);
+//     res.json(goal);
+//   });
+// });
+
+app.post('/goals/:id/tasks', function (req, res, next) {
+  var task = new Task(req.body);
+  task.goal = req.goal;
+  task.save(function (err, comment) {
+    if (err) { return next (err);}
+    req.goal.tasks.push(task);
+    req.goal.save(function (err, task) {
+      if (err) { return next (err) ;}
+      res.json(task);
+    });
+  });
+});
+
 
 /*
  * Auth Routes

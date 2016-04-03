@@ -7,8 +7,15 @@ angular
   .controller('SignupController', SignupController)
   .controller('LogoutController', LogoutController)
   .controller('ProfileController', ProfileController)
+  .controller('GoalsController', GoalsController)
   .service('Account', Account)
   .config(configRoutes)
+  .factory('goals', [function () {
+    var o = {
+      goals: []
+    };
+    return o;
+  }])
   ;
 
 
@@ -39,7 +46,12 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/goals/{id}',
       templateUrl: 'templates/goals.html',
       controller: 'GoalsController',
-      controllerAs: 'goals'
+      controllerAs: 'goals',
+      // resolve: {
+      //   post: ['$stateParams', 'goals', function($stateParams, goals){
+      //     return goals.get($stateParams.id);
+      //   }]
+      // }
     })
     .state('signup', {
       url: '/signup',
@@ -114,14 +126,16 @@ function MainController (Account) {
 
 }
 
-GoalsController.$inject = ["$http", "$stateParams", "goals"];
-function GoalsController ($http, $stateParams, goals) {
-  vm.goal = goals.goals[$stateParams.id];
-  vm.addTask = function () {
-  $http.post('/api/goals', vm.new_task)
+GoalsController.$inject = ["$http", "$stateParams", "$scope", "goals"];
+function GoalsController ($http, $stateParams, $scope, goals) {
+
+  // vm.goals = goals.goals;
+  $scope.goal = goals.goals[$stateParams.id];
+  $scope.addTask = function () {
+  $http.post('/api/goals', $scope.new_task)
     .then(function (response) {
-      vm.new_task = {};
-      vm.goal.tasks.push(response.data);
+      $scope.new_task = {};
+      $scope.goal.tasks.push(response.data);
     });
   };
 }
