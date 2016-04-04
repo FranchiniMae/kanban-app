@@ -6,7 +6,7 @@ var goalSchema = new Schema({
 	startDate: { type: Date },
 	endDate: { type: Date },
 	goalDate: { type: Date },
-	tasks: [{ type: Schema.Types.ObjectId, ref: 'Comment'}]
+	tasks: [{ type: Schema.Types.ObjectId, ref: 'Task'}]
 });
 
 var Goal = mongoose.model('Goal', goalSchema);

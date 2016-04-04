@@ -1,6 +1,6 @@
 angular
   .module('kanbanApp', [
-    'ui.router', 'satellizer' ])
+    'ui.router', 'satellizer'])
   .controller('MainController', MainController)
   .controller('HomeController', HomeController)
   .controller('LoginController', LoginController)
@@ -48,7 +48,7 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'GoalsController',
       controllerAs: 'goals',
       // resolve: {
-      //   post: ['$stateParams', 'goals', function($stateParams, goals){
+      //   goal: ['$stateParams', 'goals', function($stateParams, goals){
       //     return goals.get($stateParams.id);
       //   }]
       // }
@@ -126,23 +126,25 @@ function MainController (Account) {
 
 }
 
-GoalsController.$inject = ["$http", "$stateParams", "$scope", "goals"];
-function GoalsController ($http, $stateParams, $scope, goals) {
+GoalsController.$inject = ["$http", "$stateParams", "goals"];
+function GoalsController ($http, $stateParams, goals) {
+  var vm = this;
+  vm.goal = goals.goals[$stateParams.id];
+  console.log(vm.goal);
 
-  // vm.goals = goals.goals;
-  $scope.goal = goals.goals[$stateParams.id];
-  $scope.addTask = function () {
-  $http.post('/api/goals', $scope.new_task)
-    .then(function (response) {
-      $scope.new_task = {};
-      $scope.goal.tasks.push(response.data);
-    });
+  vm.addTask = function() {
+    $http.post('/api/goals', new_task)
+      .then(function (res) {
+        var new_task = {};
+        goal.tasks.push(res.data);
+      });
   };
 }
 
 HomeController.$inject = ["$http"]; // minification protection
 function HomeController ($http) {
   var vm = this;
+  // vm.all = [];
   vm.goals = [];
   vm.new_goal = {}; // form data
 
@@ -156,6 +158,14 @@ function HomeController ($http) {
       .then(function (response){
         vm.new_goal = {};
         vm.goals.push(response.data);
+      });
+  };
+
+  vm.deleteGoal = function(goal) {
+    $http.delete('/api/goals/' + goal._id)
+      .then(function (response) {
+        var index = vm.goals.indexOf(goal);
+        vm.goals.splice(index, 1);
       });
   };
 

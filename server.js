@@ -62,6 +62,18 @@ app.get('/api/goals', function (req, res) {
   });
 });
 
+app.delete('/api/goals/:id', function (req, res) {
+  var id = req.params.id;
+  console.log(id);
+  Goal.findOneAndRemove({_id: id}, function(err, deletedGoal) {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(deletedGoal);
+    }
+  });
+});
+
 app.post('/api/goals', auth.ensureAuthenticated, function (req, res) {
   User.findById(req.user, function (err, user) {
     var newGoal = new Goal(req.body);
@@ -77,13 +89,13 @@ app.post('/api/goals', auth.ensureAuthenticated, function (req, res) {
   });
 });
 
-// app.get('/goals/:id', auth.ensureAuthenticated, function (req, res){
-//   var id = req.params.id;
-//   Goal.findById({_id: id}, function (err, goal) {
-//     if (err) console.log(err);
-//     res.json(goal);
-//   });
-// });
+app.get('/goals/:id', function (req, res){
+  var id = req.params.id;
+  Goal.findById({_id: id}, function (err, goal) {
+    if (err) console.log(err);
+    res.json(goal);
+  });
+});
 
 app.post('/goals/:id/tasks', function (req, res, next) {
   var task = new Task(req.body);

@@ -3,7 +3,8 @@
 <p><strong>Email:</strong> {{main.currentUser().email}}</p>
 <p><strong>First Name:</strong> {{main.currentUser().firstName}}</p>
 <p><strong>Last Name:</strong> {{main.currentUser().lastName}}</p>
-<p><strong>Goals:</strong> {{main.currentUser().goals.length}}</p>
+<p><strong>Goals:</strong> {{main.currentUser().goals.length}}</p><br>
+<p>Current Goals: {{main.currentUser().goals}}</p>
 
 <hr>
 <a href="#" ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>

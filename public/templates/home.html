@@ -2,11 +2,13 @@
 <hr>
 <p ng-show="main.currentUser()" ng-if="home.goals.length === 0">No goals yet.</p>
 
+{{main.curentUser().goals}}
+
 <div ng-if="home.goals.length > 0">
 	<div ng-repeat="goal in home.goals">
 		<a href="/goals/{{goal._id}}">{{goal.title}}</a>
 		 - {{goal.goalDate | date: 'MMMM dd, yyyy'}}</p>
-		{{goal.tasks.length}}<br>
+		 <button ng-click="home.deleteGoal(goal)">Delete</button>
 	</div>
 </div>
 
