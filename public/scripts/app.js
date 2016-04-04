@@ -10,11 +10,18 @@ angular
   .controller('GoalsController', GoalsController)
   .service('Account', Account)
   .config(configRoutes)
-  .factory('goals', [function () {
-    var o = {
-      goals: []
+  .factory('goalService', [function () {
+    var goalService = {};
+    goalService.query = function() {
+      // return al goals
     };
-    return o;
+
+    goalService.get = function(id) {
+      var goalId = parseInt(id);
+      return Goals.find(function(goal) {
+        return goal.id == id;
+      });
+    };
   }])
   ;
 
@@ -126,19 +133,24 @@ function MainController (Account) {
 
 }
 
-GoalsController.$inject = ["$http", "$stateParams", "goals"];
-function GoalsController ($http, $stateParams, goals) {
+GoalsController.$inject = ["$http", "$stateParams", "$scope", "$location"];
+function GoalsController ($http, $stateParams, $scope, $location) {
   var vm = this;
-  vm.goal = goals.goals[$stateParams.id];
-  console.log(vm.goal);
+  vm.tasks = [];
+  vm.new_task = {};
+  var goalId = ($location.path().split("/")[2]);
 
-  vm.addTask = function() {
-    $http.post('/api/goals', new_task)
-      .then(function (res) {
-        var new_task = {};
-        goal.tasks.push(res.data);
-      });
-  };
+  $http.get('/api/goals/' + goalId)
+    .then(function (response) {
+      $scope.goal = response.data;
+    });
+  // vm.addTask = function() {
+  //   $http.post('/api/goals/:id', vam.new_task)
+  //     .then(function (response) {
+  //       var new_task = {};
+  //       vm.goal.tasks.push(response.data);
+  //     });
+  // };
 }
 
 HomeController.$inject = ["$http"]; // minification protection
@@ -168,14 +180,6 @@ function HomeController ($http) {
         vm.goals.splice(index, 1);
       });
   };
-
-  // vm.addTask = function () {
-  //   $http.post('/api/goals', vm.new_task)
-  //     .then(function (response) {
-  //       vm.new_task = {};
-  //       vm.goal.tasks.push(response.data);
-  //     });
-  // };
 }
 
 LoginController.$inject = ["$location", "Account"]; // minification protection

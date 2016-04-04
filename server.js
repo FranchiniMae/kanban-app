@@ -89,8 +89,9 @@ app.post('/api/goals', auth.ensureAuthenticated, function (req, res) {
   });
 });
 
-app.get('/goals/:id', function (req, res){
+app.get('/api/goals/:id', function (req, res){
   var id = req.params.id;
+  console.log("hello", req.params);
   Goal.findById({_id: id}, function (err, goal) {
     if (err) console.log(err);
     res.json(goal);
