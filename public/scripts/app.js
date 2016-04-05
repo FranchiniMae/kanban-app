@@ -132,38 +132,44 @@ function MainController (Account) {
 GoalsController.$inject = ["$http", "$stateParams", "$scope", "$location"];
 function GoalsController ($http, $stateParams, $scope, $location) {
   var vm = this;
-  vm.tasks = [];
-  vm.new_task = {};
+  // vm.tasks = [];
+  // vm.new_task = {};
   var goalId = ($location.path().split("/")[2]);
 
   $http.get('/api/goals/' + goalId)
     .then(function (response) {
+      vm.tasks = [];
+      vm.new_task = {};
+
       $scope.goal = response.data;
+      vm.tasks = $scope.goal.tasks;
+
+          vm.addTask = function() {
+            console.log("hello from addTask", vm.new_task);
+            // vm.new_task.goalId = goalId;
+            $http.post('/api/goals/' + goalId + '/tasks', vm.new_task)
+              .then(function (response) {
+                vm.new_task = {};
+                vm.tasks.push(response.data);
+                console.log('vm.tasks', vm.tasks);
+              });
+          };
+
+    console.log('vm.tasks', vm.tasks);
+
+            vm.deleteTask = function(task) {
+              taskId = task._id;
+              $http.delete('/api/goals/' + goalId + '/tasks/' + taskId)
+                .then(function (response) {
+                  var taskindex = vm.tasks.indexOf(task);
+                  console.log(taskindex);
+                  vm.tasks.splice(taskindex, 1);
+                });
+            };
     });
 
-  // '/api/goals/:id/tasks'
 
-  vm.addTask = function() {
-    console.log("hello from addTask", vm.new_task);
-    // vm.new_task.goalId = goalId;
-    $http.post('/api/goals/' + goalId + '/tasks', vm.new_task)
-      .then(function (response) {
-        vm.tasks.push(response.data);
-        var new_task = {};
-      });
-  };
 
-  vm.deleteTask = function(task) {
-    taskId = task._id;
-    console.log('taskId', taskId);
-    $http.delete('/api/goals/' + goalId + '/tasks/' + taskId)
-      .then(function (response) {
-        var taskindex = vm.tasks.indexOf(task);
-        console.log(taskindex);
-  
-        // vm.tasks.splice(index, 1);
-      });
-  };
 }
 
 HomeController.$inject = ["$http"]; // minification protection

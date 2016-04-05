@@ -107,7 +107,10 @@ app.post('/api/goals/:id/tasks', auth.ensureAuthenticated, function (req, res, n
   Goal.findById({_id: id}, function (err, goal) {
       if (err) console.log(err);
       goal.tasks.push({description: description});
-      goal.save();
+      goal.save(function (err, savedTask) {
+        if (err) console.log(err);
+        res.json(savedTask);
+      });
   });
 
 });
