@@ -143,6 +143,18 @@ app.delete('/api/goals/:id/tasks/:tid', function (req, res) {
   });
 });
 
+app.put('/api/goals/:id/tasks/:tid', function (req, res){
+//grab id
+  var taskId = req.params.tid;
+  console.log('taskId', taskId);
+  console.log('req.body =', req.body);
+//grab form adata
+//find task by id
+//grab specific data 
+//save task
+
+});
+
 
 
 /*

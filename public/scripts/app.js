@@ -151,8 +151,25 @@ function GoalsController ($http, $stateParams, $scope, $location) {
           });
       };
 
+      vm.updateTask = function(task) {
+        var updatedTask = task;
+        var taskId = task._id;
+        $http.put('/api/goals/' + goalId + '/tasks/' + taskId, updatedTask)
+          .then(function (response) {
+            console.log("updating after ajax");
+          });
+
+      }; 
+
+    //       console.log('updateGoal frontend', goal);
+    // var updatedGoal = goal;
+    // $http.put('/api/goals/' + goal._id, updatedGoal)
+    //   .then(function(response) {
+    //     console.log("hitting this update frontend");
+    //   });
+
       vm.deleteTask = function(task) {
-        taskId = task._id;
+        var taskId = task._id;
         $http.delete('/api/goals/' + goalId + '/tasks/' + taskId)
           .then(function (response) {
             var taskindex = vm.tasks.indexOf(task);
@@ -182,13 +199,17 @@ function HomeController ($http) {
       });
   };
 
+  // vm.showThisEditForm = function(goal) {
+  //   console.log("this goal is ", goal);
+  //   vm.displayEditForm = true;
+  // };
+
   vm.updateGoal = function(goal) {
     console.log('updateGoal frontend', goal);
     var updatedGoal = goal;
     $http.put('/api/goals/' + goal._id, updatedGoal)
       .then(function(response) {
         console.log("hitting this update frontend");
-        // problem is in edit form, not grabbing the form data
       });
   };
 

@@ -14,5 +14,17 @@
   </form>
 
   <div ng-repeat="task in goal.tasks">
-    {{task.description}} <button ng-click="goals.deleteTask(task)">Delete</button>
+    <div class="alltasks" ng-hide="goals.displayEditForm">
+      {{task.description}} <button ng-click="goals.deleteTask(task)">Delete</button> <button ng-click="goals.displayEditForm = true">Edit</button>
+    </div>
+
+    <form ng-show="goals.displayEditForm" ng-submit="goals.updateTask(task)">
+      <h3>Edit Goal</h3>
+       <div class="form-group">
+         <input type="text" ng-model="task.description" class="form-control" placeholder="Description">
+       </div>
+       
+       <input type="submit" value="Save Task" class="btn btn-default"  ng-click="home.displayEditForm = false"><br><br>
+     </form>
   </div>
+

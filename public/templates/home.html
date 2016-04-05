@@ -5,19 +5,19 @@
 
 <div ng-if="home.goals.length > 0">
 	<div ng-repeat="goal in home.goals">
-		<div class="allgoals" ng-hide="home.displayEditForm">
+		<div class="allgoals" ng-hide="goal.displayEditForm">
 			<a ng-href="/goals/{{goal._id}}">{{goal.title}}</a>
-			 - {{goal.goalDate | date: 'MMMM dd, yyyy'}} <button ng-click="home.deleteGoal(goal)">Delete</button> <button ng-click="home.displayEditForm = true">Edit</button></p>
+			 - {{goal.goalDate | date: 'MMMM dd, yyyy'}} <button ng-click="home.deleteGoal(goal)">Delete</button> <button ng-click="goal.displayEditForm = true">Edit</button></p>
 		 </div>
 
-		<form ng-show="home.displayEditForm" ng-submit="home.updateGoal(goal)">
+		<form ng-show="goal.displayEditForm" ng-submit="home.updateGoal(goal)">
 			<h3>Edit Goal</h3>
 	     <div class="form-group">
 	       <input type="text" ng-model="goal.title" class="form-control" placeholder="Title">
 	       <input type="date" ng-model="goal.goalDate" class="form-control" placeholder="Goal Date">
 	     </div>
-	     
-	     <input type="submit" value="Save Goal" class="btn btn-default"  ng-click="home.displayEditForm = false"><br><br>
+
+	     <input type="submit" value="Save Goal" class="btn btn-default"  ng-click="goal.displayEditForm = false"><br><br>
 	   </form>
 	</div>
 
