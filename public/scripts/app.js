@@ -144,31 +144,24 @@ function GoalsController ($http, $stateParams, $scope, $location) {
       $scope.goal = response.data;
       vm.tasks = $scope.goal.tasks;
 
-          vm.addTask = function() {
-            console.log("hello from addTask", vm.new_task);
-            // vm.new_task.goalId = goalId;
-            $http.post('/api/goals/' + goalId + '/tasks', vm.new_task)
-              .then(function (response) {
-                vm.tasks.push(response.data.tasks[(response.data.tasks.length) - 1]);
-                // console.log(response.data.tasks[(response.data.tasks.length) - 1]);
-                vm.new_task = {};
-              });
-          };
+      vm.addTask = function() {
+        $http.post('/api/goals/' + goalId + '/tasks', vm.new_task)
+          .then(function (response) {
+            vm.tasks.push(response.data.tasks[(response.data.tasks.length) - 1]);
+            // console.log(response.data.tasks[(response.data.tasks.length) - 1]);
+            vm.new_task = {};
+          });
+      };
 
-    console.log('vm.tasks', vm.tasks);
-
-            vm.deleteTask = function(task) {
-              taskId = task._id;
-              $http.delete('/api/goals/' + goalId + '/tasks/' + taskId)
-                .then(function (response) {
-                  var taskindex = vm.tasks.indexOf(task);
-                  vm.tasks.splice(taskindex, 1);
-                });
-            };
+      vm.deleteTask = function(task) {
+        taskId = task._id;
+        $http.delete('/api/goals/' + goalId + '/tasks/' + taskId)
+          .then(function (response) {
+            var taskindex = vm.tasks.indexOf(task);
+            vm.tasks.splice(taskindex, 1);
+          });
+      };
     });
-
-
-
 }
 
 HomeController.$inject = ["$http"]; // minification protection
