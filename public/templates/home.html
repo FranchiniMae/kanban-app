@@ -6,7 +6,22 @@
 <div ng-if="home.goals.length > 0">
 	<div ng-repeat="goal in home.goals">
 		<a ng-href="/goals/{{goal._id}}">{{goal.title}}</a>
-		 - {{goal.goalDate | date: 'MMMM dd, yyyy'}} <button ng-click="home.deleteGoal(goal)">Delete</button></p>
+		 - {{goal.goalDate | date: 'MMMM dd, yyyy'}} <button ng-click="home.deleteGoal(goal)">Delete</button> <button ng-click="home.toggleModal()">Edit</button></p>
+
+		<modal title="Edit Goal" visible="home.showModal">
+	    <form role="form" ng-submit="home.updateGoal(goal)">
+	      <div class="form-group">
+	        <label for="title">Title</label>
+	        <input type="text" ng-model="goal.title" class="form-control" id="title" placeholder="Title" />
+	      </div>
+	      <div class="form-group">
+	        <label for="goalDate">Goal Date</label>
+	        <input type="date" class="form-control" id="goalDate" placeholder="Goal Date" />
+	      </div>
+	      <button type="submit" class="btn btn-default">Submit</button>
+	    </form>
+	  </modal>
+
 	</div>
 </div>
 
@@ -26,3 +41,5 @@
 		<input type="submit" value="Add Goal" class="btn btn-default">
 	</form>
 </div>
+
+

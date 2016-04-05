@@ -75,6 +75,12 @@ app.delete('/api/goals/:id', function (req, res) {
   });
 });
 
+app.put('/api/goals/:id', function(req, res) {
+  var id = req.params.id;
+  console.log('update params id = ', id);
+  console.log('hello from backend update');
+});
+
 app.post('/api/goals', auth.ensureAuthenticated, function (req, res) {
   User.findById(req.user, function (err, user) {
     var newGoal = new Goal(req.body);
