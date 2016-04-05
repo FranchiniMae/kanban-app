@@ -16,5 +16,4 @@ var goalSchema = new Schema({
 
 var Goal = mongoose.model('Goal', goalSchema);
 var Task = mongoose.model('Task', taskSchema);
-module.exports = Task;
 module.exports = Goal;

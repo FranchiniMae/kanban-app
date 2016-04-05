@@ -26,6 +26,7 @@ mongoose.connect('mongodb://localhost/kanban');
 // require User and Post models
 var User = require('./models/user');
 var Goal = require('./models/goal');
+var Task = require('./models/goal');
 
 
 /*
@@ -78,6 +79,7 @@ app.post('/api/goals', auth.ensureAuthenticated, function (req, res) {
   User.findById(req.user, function (err, user) {
     var newGoal = new Goal(req.body);
     newGoal.save(function (err, savedGoal) {
+      console.log('newGoal', newGoal);
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
@@ -98,21 +100,35 @@ app.get('/api/goals/:id', function (req, res){
   });
 });
 
-app.post('/api/tasks', auth.ensureAuthenticated, function (req, res, next) {
+app.post('/api/goals/:id/tasks', auth.ensureAuthenticated, function (req, res, next) {
   console.log("hello from tasks");
-  console.log(req);
-  // Goal.findById(req.user, function (err, user) {
-  //   var newGoal = new Goal(req.body);
-  //   newGoal.save(function (err, savedGoal) {
-  //     if (err) {
-  //       res.status(500).json({ error: err.message });
-  //     } else {
-  //       user.goals.push(newGoal);
-  //       user.save();
-  //       res.json(savedGoal);
-  //     }
-  //   });
-  // });
+  var id = req.params.id;
+  console.log(req.params.id);
+  console.log('reqbody', req.body);
+  var description = req.body.description;
+
+  Goal.findById({_id: id}, function (err, goal) {
+      console.log('goal', goal);
+      goal.tasks.push({description: description});
+      goal.save();
+      // res.json(goal)
+
+    // var newTask = new Task({
+    //   description: description
+    // });
+    // newTask.save(function (err, savedTask) {
+    //   console.log("savedTask", savedTask);
+    //   console.log("newTask", newTask);
+
+      // if (err) {
+      //   res.status(500).json({ error: err.message });
+      // } else {
+      //   goal.tasks.push(newTask);
+      //   goal.save();
+      //   res.json(savedTask);
+      // }
+    // });
+  });
 
 });
 

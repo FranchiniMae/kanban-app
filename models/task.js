@@ -6,5 +6,5 @@ var taskSchema = new Schema({
 	completed: { type: Boolean }
 });
 
-var Task = mongoose.model('Task', goalSchema);
+var Task = mongoose.model('Task', taskSchema);
 module.exports = Task;
