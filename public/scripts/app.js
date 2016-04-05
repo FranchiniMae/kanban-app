@@ -149,9 +149,9 @@ function GoalsController ($http, $stateParams, $scope, $location) {
             // vm.new_task.goalId = goalId;
             $http.post('/api/goals/' + goalId + '/tasks', vm.new_task)
               .then(function (response) {
+                vm.tasks.push(response.data.tasks[(response.data.tasks.length) - 1]);
+                // console.log(response.data.tasks[(response.data.tasks.length) - 1]);
                 vm.new_task = {};
-                vm.tasks.push(response.data);
-                console.log('vm.tasks', vm.tasks);
               });
           };
 
@@ -186,6 +186,7 @@ function HomeController ($http) {
     $http.post('/api/goals', vm.new_goal)
       .then(function (response){
         vm.goals.push(response.data);
+        console.log(response.data);
         vm.new_goal = {};
       });
   };

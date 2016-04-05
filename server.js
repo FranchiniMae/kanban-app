@@ -79,7 +79,6 @@ app.post('/api/goals', auth.ensureAuthenticated, function (req, res) {
   User.findById(req.user, function (err, user) {
     var newGoal = new Goal(req.body);
     newGoal.save(function (err, savedGoal) {
-      console.log('newGoal', newGoal);
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
