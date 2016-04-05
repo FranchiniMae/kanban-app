@@ -141,6 +141,8 @@ function GoalsController ($http, $stateParams, $scope, $location) {
       $scope.goal = response.data;
     });
 
+  // '/api/goals/:id/tasks'
+
   vm.addTask = function() {
     console.log("hello from addTask", vm.new_task);
     // vm.new_task.goalId = goalId;

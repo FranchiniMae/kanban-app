@@ -101,33 +101,13 @@ app.get('/api/goals/:id', function (req, res){
 });
 
 app.post('/api/goals/:id/tasks', auth.ensureAuthenticated, function (req, res, next) {
-  console.log("hello from tasks");
   var id = req.params.id;
-  console.log(req.params.id);
-  console.log('reqbody', req.body);
   var description = req.body.description;
 
   Goal.findById({_id: id}, function (err, goal) {
-      console.log('goal', goal);
+      if (err) console.log(err);
       goal.tasks.push({description: description});
       goal.save();
-      // res.json(goal)
-
-    // var newTask = new Task({
-    //   description: description
-    // });
-    // newTask.save(function (err, savedTask) {
-    //   console.log("savedTask", savedTask);
-    //   console.log("newTask", newTask);
-
-      // if (err) {
-      //   res.status(500).json({ error: err.message });
-      // } else {
-      //   goal.tasks.push(newTask);
-      //   goal.save();
-      //   res.json(savedTask);
-      // }
-    // });
   });
 
 });
