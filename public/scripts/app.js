@@ -162,7 +162,6 @@ function GoalsController ($http, $stateParams, $scope, $location) {
               $http.delete('/api/goals/' + goalId + '/tasks/' + taskId)
                 .then(function (response) {
                   var taskindex = vm.tasks.indexOf(task);
-                  console.log(taskindex);
                   vm.tasks.splice(taskindex, 1);
                 });
             };
