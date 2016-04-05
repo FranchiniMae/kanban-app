@@ -87,7 +87,6 @@ app.put('/api/goals/:id', function(req, res) {
       if (err) { console.log(err);}
       res.json(savedGoal);
     });
-  console.log('foundGoal', foundGoal);
   });
 });
 
@@ -144,18 +143,18 @@ app.delete('/api/goals/:id/tasks/:tid', function (req, res) {
 });
 
 app.put('/api/goals/:id/tasks/:tid', function (req, res){
-//grab id
+  var goalId = req.params.id;
   var taskId = req.params.tid;
-  console.log('taskId', taskId);
-  console.log('req.body =', req.body);
-//grab form adata
-//find task by id
-//grab specific data 
-//save task
 
+  Goal.findById({_id: goalId}, function(err, foundGoal){
+    var foundTask = foundGoal.tasks.id(taskId);
+    foundTask.description = req.body.description;
+    foundGoal.save(function (err, savedTask){
+      if (err) console.log(err);
+      res.json(savedTask);
+    });
+  });
 });
-
-
 
 /*
  * Auth Routes

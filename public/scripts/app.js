@@ -158,15 +158,7 @@ function GoalsController ($http, $stateParams, $scope, $location) {
           .then(function (response) {
             console.log("updating after ajax");
           });
-
       }; 
-
-    //       console.log('updateGoal frontend', goal);
-    // var updatedGoal = goal;
-    // $http.put('/api/goals/' + goal._id, updatedGoal)
-    //   .then(function(response) {
-    //     console.log("hitting this update frontend");
-    //   });
 
       vm.deleteTask = function(task) {
         var taskId = task._id;
@@ -198,11 +190,6 @@ function HomeController ($http) {
         vm.new_goal = {};
       });
   };
-
-  // vm.showThisEditForm = function(goal) {
-  //   console.log("this goal is ", goal);
-  //   vm.displayEditForm = true;
-  // };
 
   vm.updateGoal = function(goal) {
     console.log('updateGoal frontend', goal);
