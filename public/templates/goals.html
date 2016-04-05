@@ -4,7 +4,7 @@
     </h3>
   </div>
 
-  <form ng-submit="addTask()">
+  <form ng-submit="goals.addTask()">
     <h3>Add a new task</h3>
     <div class="form-group">
       <input type="text"
@@ -15,6 +15,6 @@
     <button type="submit" class="btn btn-primary">Add Task</button>
   </form>
 
-  <div ng-repeat="task in goal.tasks">
+  <div ng-repeat="task in goals.tasks">
     {{task.description}}
   </div>

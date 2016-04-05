@@ -50,15 +50,11 @@ function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
       controllerAs: 'home'
     })
     .state('goals', {
-      url: '/goals/{id}',
+      url: '/goals/:id',
       templateUrl: 'templates/goals.html',
       controller: 'GoalsController',
       controllerAs: 'goals',
-      // resolve: {
-      //   goal: ['$stateParams', 'goals', function($stateParams, goals){
-      //     return goals.get($stateParams.id);
-      //   }]
-      // }
+
     })
     .state('signup', {
       url: '/signup',
@@ -144,19 +140,21 @@ function GoalsController ($http, $stateParams, $scope, $location) {
     .then(function (response) {
       $scope.goal = response.data;
     });
-  // vm.addTask = function() {
-  //   $http.post('/api/goals/:id', vam.new_task)
+
+  vm.addTask = function() {
+    console.log("hello from addTask");
+  //   $http.post('/api/tasks', vm.new_task)
   //     .then(function (response) {
   //       var new_task = {};
-  //       vm.goal.tasks.push(response.data);
+  //       vm.tasks.push(response.data);
   //     });
   // };
+  };
 }
 
 HomeController.$inject = ["$http"]; // minification protection
 function HomeController ($http) {
   var vm = this;
-  // vm.all = [];
   vm.goals = [];
   vm.new_goal = {}; // form data
 

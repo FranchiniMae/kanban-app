@@ -3,8 +3,7 @@ var mongoose = require('mongoose'),
 
 var taskSchema = new Schema({
 	description: { type: String },
-	completed: { type: Boolean },
-	goal: [{ type: Schema.Types.ObjectId, ref: 'Goal'}]
+	completed: { type: Boolean }
 });
 
 var Task = mongoose.model('Task', goalSchema);

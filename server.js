@@ -91,26 +91,30 @@ app.post('/api/goals', auth.ensureAuthenticated, function (req, res) {
 
 app.get('/api/goals/:id', function (req, res){
   var id = req.params.id;
-  console.log("hello", req.params);
   Goal.findById({_id: id}, function (err, goal) {
     if (err) console.log(err);
-    res.json(goal);
+    // res.json(goal);
+    res.send(goal.populate('tasks'));
   });
 });
 
-app.post('/goals/:id/tasks', function (req, res, next) {
-  var task = new Task(req.body);
-  task.goal = req.goal;
-  task.save(function (err, comment) {
-    if (err) { return next (err);}
-    req.goal.tasks.push(task);
-    req.goal.save(function (err, task) {
-      if (err) { return next (err) ;}
-      res.json(task);
-    });
-  });
-});
+app.post('/api/tasks', auth.ensureAuthenticated, function (req, res, next) {
+  console.log("hello from tasks");
+  console.log(req);
+  // Goal.findById(req.user, function (err, user) {
+  //   var newGoal = new Goal(req.body);
+  //   newGoal.save(function (err, savedGoal) {
+  //     if (err) {
+  //       res.status(500).json({ error: err.message });
+  //     } else {
+  //       user.goals.push(newGoal);
+  //       user.save();
+  //       res.json(savedGoal);
+  //     }
+  //   });
+  // });
 
+});
 
 /*
  * Auth Routes
