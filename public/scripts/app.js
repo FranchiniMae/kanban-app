@@ -152,6 +152,18 @@ function GoalsController ($http, $stateParams, $scope, $location) {
         var new_task = {};
       });
   };
+
+  vm.deleteTask = function(task) {
+    taskId = task._id;
+    console.log('taskId', taskId);
+    $http.delete('/api/goals/' + goalId + '/tasks/' + taskId)
+      .then(function (response) {
+        var taskindex = vm.tasks.indexOf(task);
+        console.log(taskindex);
+  
+        // vm.tasks.splice(index, 1);
+      });
+  };
 }
 
 HomeController.$inject = ["$http"]; // minification protection

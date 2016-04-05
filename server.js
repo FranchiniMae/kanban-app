@@ -112,6 +112,23 @@ app.post('/api/goals/:id/tasks', auth.ensureAuthenticated, function (req, res, n
 
 });
 
+app.delete('/api/goals/:id/tasks/:tid', function (req, res) {
+  var goalId = req.params.id;
+  console.log('goalId', goalId);
+  var taskId = req.params.tid;
+  console.log('tid', taskId);
+  Goal.findByIdAndUpdate({_id: goalId}, {
+    $pull: {
+      tasks: {_id: taskId}
+    }
+  }, function (err, deletedTask) {
+    if (err) console.log(err);
+    res.json(deletedTask);
+  });
+});
+
+
+
 /*
  * Auth Routes
  */

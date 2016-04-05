@@ -1,6 +1,6 @@
   <div class="page-header">
     <h3>
-        {{goal.title}}
+        {{goal.title}} {{goal.tasks.length}}
     </h3>
   </div>
 
@@ -14,5 +14,5 @@
   </form>
 
   <div ng-repeat="task in goal.tasks">
-    {{task.description}} <i class="fa fa-close" ng-click="home.deleteTask(task)"></i>
+    {{task.description}} <button ng-click="goals.deleteTask(task)">Delete</button>
   </div>
