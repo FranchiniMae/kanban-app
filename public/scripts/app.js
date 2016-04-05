@@ -22,51 +22,7 @@ angular
         return goal.id == id;
       });
     };
-  }])
-  .directive('modal', function () {
-    return {
-      template: '<div class="modal fade">' + 
-          '<div class="modal-dialog">' + 
-            '<div class="modal-content">' + 
-              '<div class="modal-header">' + 
-                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + 
-                '<h4 class="modal-title">{{ title }}</h4>' + 
-              '</div>' + 
-              '<div class="modal-body" ng-transclude></div>' + 
-            '</div>' + 
-          '</div>' + 
-        '</div>',
-      restrict: 'E',
-      transclude: true,
-      replace:true,
-      scope:true,
-      link: function postLink(scope, element, attrs) {
-        scope.title = attrs.title;
-
-        scope.$watch(attrs.visible, function(value){
-          if(value === true)
-            $(element).modal('show');
-          else
-            $(element).modal('hide');
-        });
-
-        $(element).on('shown.bs.modal', function(){
-          scope.$apply(function(){
-            scope.$parent[attrs.visible] = true;
-          });
-        });
-
-        $(element).on('hidden.bs.modal', function(){
-          scope.$apply(function(){
-            scope.$parent[attrs.visible] = false;
-          });
-        });
-      }
-    };
-  })
-  //end modal here
-  ;
-
+  }]);
 
 ////////////
 // ROUTES //
@@ -212,12 +168,6 @@ function HomeController ($http) {
   vm.goals = [];
   vm.new_goal = {}; // form data
 
-  vm.showModal = false;
-  vm.toggleModal = function() {
-    console.log("hello from togal modal");
-    vm.showModal = !vm.showModal;
-  };
-
   $http.get('/api/goals')
     .then(function (response) {
       vm.goals = response.data;
@@ -233,15 +183,17 @@ function HomeController ($http) {
   };
 
   vm.updateGoal = function(goal) {
-    console.log("hitting update goal");
-    console.log(goal);
-    $http.put('/api/goals/' + goal._id)
+    console.log('updateGoal frontend', goal);
+    var updatedGoal = goal;
+    $http.put('/api/goals/' + goal._id, updatedGoal)
       .then(function(response) {
         console.log("hitting this update frontend");
+        // problem is in edit form, not grabbing the form data
       });
   };
 
   vm.deleteGoal = function(goal) {
+    console.log('goal from delete', goal);
     $http.delete('/api/goals/' + goal._id)
       .then(function (response) {
         var index = vm.goals.indexOf(goal);

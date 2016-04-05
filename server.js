@@ -77,8 +77,18 @@ app.delete('/api/goals/:id', function (req, res) {
 
 app.put('/api/goals/:id', function(req, res) {
   var id = req.params.id;
+  console.log('req.body', req.body);
   console.log('update params id = ', id);
-  console.log('hello from backend update');
+  Goal.findById({_id: id}, function (err, foundGoal) {
+    if (err) console.log(err);
+    foundGoal.title = req.body.title;
+    foundGoal.goalDate = req.body.goalDate;
+    foundGoal.save(function (err, savedGoal) {
+      if (err) { console.log(err);}
+      res.json(savedGoal);
+    });
+  console.log('foundGoal', foundGoal);
+  });
 });
 
 app.post('/api/goals', auth.ensureAuthenticated, function (req, res) {
