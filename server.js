@@ -76,7 +76,6 @@ app.get('/api/goals', function (req, res) {
 
 app.delete('/api/goals/:id', function (req, res) {
   var id = req.params.id;
-  console.log(id);
   Goal.findOneAndRemove({_id: id}, function(err, deletedGoal) {
     if (err) {
       res.status(500).json({ error: err.message });
@@ -88,8 +87,6 @@ app.delete('/api/goals/:id', function (req, res) {
 
 app.put('/api/goals/:id', function(req, res) {
   var id = req.params.id;
-  console.log('req.body', req.body);
-  console.log('update params id = ', id);
   Goal.findById({_id: id}, function (err, foundGoal) {
     if (err) console.log(err);
     foundGoal.title = req.body.title;
@@ -155,9 +152,7 @@ app.delete('/api/goals/:id/tasks/:tid', function (req, res) {
 app.put('/api/goals/:id/tasks/:tid', function (req, res){
   var goalId = req.params.id;
   var taskId = req.params.tid;
-
-  console.log('checking complete', req.body.complete);
-
+  
   Goal.findById({_id: goalId}, function(err, foundGoal){
     var foundTask = foundGoal.tasks.id(taskId);
     foundTask.description = req.body.description;
