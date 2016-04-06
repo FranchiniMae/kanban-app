@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var taskSchema = new Schema({
 	description: { type: String },
-	completed: { type: Boolean }
+	complete: { type: Boolean }
 });
 
 var goalSchema = new Schema({

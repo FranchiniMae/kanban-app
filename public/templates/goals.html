@@ -15,7 +15,9 @@
 
   <div ng-repeat="task in goal.tasks">
     <div class="alltasks" ng-hide="task.displayEditForm">
-      {{task.description}} <button ng-click="goals.deleteTask(task)">Delete</button> <button ng-click="task.displayEditForm = true">Edit</button>
+      <input type="checkbox" name="complete" ng-model="task.complete" ng-change="goals.markComplete(task)"/>
+      {{task.description}} <button ng-click="goals.deleteTask(task)">Delete</button> <button ng-click="task.displayEditForm = true">Edit</button><br>
+      {{task.complete}}
     </div>
 
     <form ng-show="task.displayEditForm" ng-submit="goals.updateTask(task)">

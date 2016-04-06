@@ -168,6 +168,19 @@ function GoalsController ($http, $stateParams, $scope, $location) {
             vm.tasks.splice(taskindex, 1);
           });
       };
+
+      // start checkbox information
+      vm.markComplete = function(task) {
+        var updatedTask = task;
+        var taskId = task._id;
+        $http.put('/api/goals/' + goalId + '/tasks/' + taskId, updatedTask)
+          .then(function (response) {
+            console.log("updating after ajax");
+          });
+      };
+      // end checkbox information
+
+
     });
 }
 

@@ -120,7 +120,7 @@ app.post('/api/goals/:id/tasks', auth.ensureAuthenticated, function (req, res, n
 
   Goal.findById({_id: id}, function (err, goal) {
       if (err) console.log(err);
-      goal.tasks.push({description: description});
+      goal.tasks.push({description: description, complete: false});
       goal.save(function (err, savedTask) {
         if (err) console.log(err);
         res.json(savedTask);
@@ -146,9 +146,12 @@ app.put('/api/goals/:id/tasks/:tid', function (req, res){
   var goalId = req.params.id;
   var taskId = req.params.tid;
 
+  console.log('checking complete', req.body.complete);
+
   Goal.findById({_id: goalId}, function(err, foundGoal){
     var foundTask = foundGoal.tasks.id(taskId);
     foundTask.description = req.body.description;
+    foundTask.complete = req.body.complete;
     foundGoal.save(function (err, savedTask){
       if (err) console.log(err);
       res.json(savedTask);
