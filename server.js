@@ -53,6 +53,16 @@ app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
   });
 });
 
+app.get('/api/me/goals', auth.ensureAuthenticated, function (req, res) {
+  console.log('req.user', req.user);
+  User.findById({_id: req.user}, function (err, user) {
+    Goal.find({_id: {$in: user.goals}}, function(err, goals) {
+      if (err) console.log(err);
+      res.send(goals);
+    });
+  });
+});
+
 app.get('/api/goals', function (req, res) {
   Goal.find(function (err, allGoals) {
     if (err) {
@@ -61,6 +71,7 @@ app.get('/api/goals', function (req, res) {
       res.json(allGoals);
     }
   });
+
 });
 
 app.delete('/api/goals/:id', function (req, res) {
@@ -109,7 +120,6 @@ app.get('/api/goals/:id', function (req, res){
   var id = req.params.id;
   Goal.findById({_id: id}, function (err, goal) {
     if (err) console.log(err);
-    // res.json(goal);
     res.send(goal.populate('tasks'));
   });
 });

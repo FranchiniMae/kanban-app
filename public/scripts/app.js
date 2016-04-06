@@ -130,8 +130,6 @@ function MainController (Account) {
 GoalsController.$inject = ["$http", "$stateParams", "$scope", "$location"];
 function GoalsController ($http, $stateParams, $scope, $location) {
   var vm = this;
-  // vm.tasks = [];
-  // vm.new_task = {};
   var goalId = ($location.path().split("/")[2]);
 
   $http.get('/api/goals/' + goalId)
@@ -184,16 +182,23 @@ function GoalsController ($http, $stateParams, $scope, $location) {
     });
 }
 
-HomeController.$inject = ["$http"]; // minification protection
-function HomeController ($http) {
+HomeController.$inject = ["$http", "Account"]; // minification protection
+function HomeController ($http, Account) {
   var vm = this;
   vm.goals = [];
   vm.new_goal = {}; // form data
+  // vm.currentUser
+  vm.currentUser = null;
 
-  $http.get('/api/goals')
+  $http.get('/api/me/goals')
     .then(function (response) {
       vm.goals = response.data;
     });
+
+  // $http.get('/api/goals')
+  //   .then(function (response) {
+  //     vm.goals = response.data;
+  //   });
 
   vm.createGoal = function() {
     $http.post('/api/goals', vm.new_goal)
@@ -355,6 +360,7 @@ function Account($http, $q, $auth) {
     getProfile().then(
       function onSuccess(response) {
         self.user = response.data;
+        console.log(self.user);
         deferred.resolve(self.user);
       },
 

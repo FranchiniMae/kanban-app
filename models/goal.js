@@ -11,7 +11,7 @@ var goalSchema = new Schema({
 	startDate: { type: Date },
 	endDate: { type: Date },
 	goalDate: { type: Date },
-	tasks: [taskSchema]
+	tasks: [taskSchema],
 });
 
 var Goal = mongoose.model('Goal', goalSchema);
