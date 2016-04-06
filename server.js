@@ -4,8 +4,9 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     hbs = require('hbs'),
     mongoose = require('mongoose'),
-    auth = require('./resources/auth');
-    path = require('path');
+    auth = require('./resources/auth'),
+    path = require('path'),
+    ProgressBar = require('progressbar.js');
 
 // require and load dotenv
 require('dotenv').load();
@@ -152,7 +153,7 @@ app.delete('/api/goals/:id/tasks/:tid', function (req, res) {
 app.put('/api/goals/:id/tasks/:tid', function (req, res){
   var goalId = req.params.id;
   var taskId = req.params.tid;
-  
+
   Goal.findById({_id: goalId}, function(err, foundGoal){
     var foundTask = foundGoal.tasks.id(taskId);
     foundTask.description = req.body.description;
@@ -209,7 +210,6 @@ app.post('/auth/login', function (req, res) {
 app.get('*', function (req, res) {
   res.render('index');
 });
-
 
 /*
  * Listen on localhost:3000

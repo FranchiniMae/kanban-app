@@ -1,6 +1,8 @@
-<h5>kanban</h5>
-{{main.currentUser().goals.title}} <!-- checking to see if you have access to main's goals -->
+<h3>kanban</h3>
 
+<canvas id="bar" class="chart chart-bar"
+  chart-data="data" chart-labels="labels"> chart-series="series"
+</canvas>
 
 <hr>
 <p ng-show="main.currentUser()" ng-if="home.goals.length === 0">No goals yet.</p>
