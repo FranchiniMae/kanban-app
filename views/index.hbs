@@ -78,7 +78,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li ng-show="!main.currentUser()"><a ui-sref="signup">SIGN UP</a></li>
           <li ng-show="!main.currentUser()"><a ui-sref="login">LOG IN</a></li>
-          <li ng-show="main.currentUser()"><a ui-sref="profile">\{{main.currentUser().firstName}}</a></li>
+          <li ng-show="main.currentUser()"><a ui-sref="profile">\{{main.currentUser().firstName | uppercase}}</a></li>
           <li ng-show="main.currentUser()"><a ui-sref="logout">LOG OUT</a></li>
         </ul>
       </div>
