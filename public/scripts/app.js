@@ -317,7 +317,7 @@ function LoginController ($location, Account) {
       .login(vm.new_user)
       .then(function(){
         vm.new_user = {};      
-        $location.path( '/profile' );
+        $location.path( '/home' );
       });
   };
 }
@@ -332,7 +332,7 @@ function SignupController ($location, Account) {
       .signup(vm.new_user)
       .then(function (response) {
           vm.new_user = {};
-          $location.path( '/profile' );
+          $location.path( '/home' );
         }
       );
   };
