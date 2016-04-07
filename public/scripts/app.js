@@ -177,7 +177,7 @@ function GoalsController ($http, $stateParams, $scope, $location, $state) {
 
       vm.difference = -(Math.round(((vm.currentDate - vm.changedDate) / (1000*60*60*24))));
 
-      console.log('difference', difference);
+      console.log('difference', vm.difference);
 
 
       // END TIME REMAINING
