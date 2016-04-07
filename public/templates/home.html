@@ -33,7 +33,6 @@
 	<hr>
 	<br>
 
-
 	<div ng-show="main.currentUser()">
 	<div id="addbutton" class="centertext buttonspace">
 		<button ng-click="home.displayAddForm = true">Add Goal</button>
@@ -48,7 +47,7 @@
 					<input type="text" class="form-control" ng-model="home.new_goal.title" id="goal-title" placeholder="Title">
 				</div>
 				<div class="form-group">
-					<label for="goal-goalDate">Goal Date</label>
+					<label for="goal-goalDate">Deadline</label>
 					<input type="date" class="form-control" ng-model="home.new_goal.goalDate" id="goal-goalDate" placeholder="Goal Date">
 				</div>
 				<input type="submit" ng-click="home.displayAddForm = false" value="Add Goal" class="btn btn-default">
