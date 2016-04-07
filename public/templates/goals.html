@@ -1,46 +1,52 @@
-  <div class="page-header">
-  <div class="centertext bottomspace">
-    <div id="goaltitle">{{goal.title}}</div>
-    <div id="goaldate">{{ goal.goalDate | date: 'MMMM dd, yyyy'}}</div>
-  </div>
-
-  <p ng-show="main.currentUser()" ng-if="goal.tasks.length === 0">No tasks yet.</p>
-
-  <canvas id="doughnut" class="chart chart-doughnut"
-    chart-data="data" chart-labels="labels">
-  </canvas> 
-  <br>
-  </div>
-
-  <div ng-repeat="task in goal.tasks">
-    <div class="alltasks" ng-hide="task.displayEditForm">
-      <input type="checkbox" name="complete" ng-model="task.complete" ng-change="goals.markComplete(task)"/>
-      {{task.description}} <i class="fa fa-close" ng-click="goals.deleteTask(task)"></i> <i class="fa fa-pencil" ng-click="task.displayEditForm = true"></i><br>
+<div class="container">
+  <div class="row">
+  <div class="col-md-6 col-md-offset-3"> 
+    <div class="page-header">
+    <div class="centertext bottomspace">
+      <div id="goaltitle">{{goal.title}}</div>
+      <div id="goaldate">{{ goal.goalDate | date: 'MMMM dd, yyyy'}}</div>
     </div>
 
-    <form ng-show="task.displayEditForm" ng-submit="goals.updateTask(task)">
-      <h3>Edit Goal</h3>
-       <div class="form-group">
-         <input type="text" ng-model="task.description" class="form-control" placeholder="Description">
-       </div>
-       
-       <input type="submit" value="Save Task" class="btn btn-default"  ng-click="task.displayEditForm = false"><br><br>
-     </form>
+    <p ng-show="main.currentUser()" ng-if="goal.tasks.length === 0">No tasks yet.</p>
+
+    <canvas id="doughnut" class="chart chart-doughnut"
+      chart-data="data" chart-labels="labels">
+    </canvas> 
+    <br>
+    </div>
+
+    <div ng-repeat="task in goal.tasks">
+      <div class="alltasks" ng-hide="task.displayEditForm">
+        <input type="checkbox" name="complete" ng-model="task.complete" ng-change="goals.markComplete(task)"/>
+        {{task.description}} <i class="fa fa-close" ng-click="goals.deleteTask(task)"></i> <i class="fa fa-pencil" ng-click="task.displayEditForm = true"></i><br>
+      </div>
+
+      <form ng-show="task.displayEditForm" ng-submit="goals.updateTask(task)">
+        <h3>Edit Goal</h3>
+         <div class="form-group">
+           <input type="text" ng-model="task.description" class="form-control" placeholder="Description">
+         </div>
+         
+         <input type="submit" value="Save Task" class="btn btn-default"  ng-click="task.displayEditForm = false"><br><br>
+       </form>
+    </div>
+
+
+  <div id="addbutton" class="centertext buttonspace">
+    <button ng-click="goals.displayAddTask = true">Add Task</button>
   </div>
 
-
-<div id="addbutton" class="centertext buttonspace">
-  <button ng-click="goals.displayAddTask = true">Add Task</button>
-</div>
-
-<div ng-show="goals.displayAddTask">
-  <form ng-submit="goals.addTask()">
-    <h3>Add a new task</h3>
-    <div class="form-group">
-      <label for="task-description">Description</label>
-      <input type="text" class="form-control" placeholder="Description" ng-model="goals.new_task.description"></input>
-    </div>
-    <button type="submit" ng-click="goals.displayAddTask = false" class="btn btn-primary">Add Task</button>
-  </form>
+  <div ng-show="goals.displayAddTask">
+    <form ng-submit="goals.addTask()">
+      <h3>Add a new task</h3>
+      <div class="form-group">
+        <label for="task-description">Description</label>
+        <input type="text" class="form-control" placeholder="Description" ng-model="goals.new_task.description"></input>
+      </div>
+      <button type="submit" ng-click="goals.displayAddTask = false" class="btn btn-primary">Add Task</button>
+    </form>
+  </div>
+  </div>
+  </div>
 </div>
 
