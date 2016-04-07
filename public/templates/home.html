@@ -1,10 +1,10 @@
-<h3>kanban</h3>
+<div id="logintitle" class="centertext">KANBAN</div>
 
 <canvas id="bar" class="chart chart-bar"
-  chart-data="data" chart-labels="labels" chart-series="series">
+  chart-data="data" chart-labels="labels" chart-series="series" chart-colours="green">
 </canvas>
 <br>
-<hr>
+<br>
 <p ng-show="main.currentUser()" ng-if="home.goals.length === 0">No goals yet.</p>
 
 <div ng-if="home.goals.length > 0">

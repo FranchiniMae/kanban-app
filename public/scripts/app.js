@@ -273,10 +273,7 @@ function HomeController ($http, Account, $scope) {
       };
 
       vm.quotient();
-      console.log(vm.quotientArray);
       $scope.data = [ vm.quotientArray ];
-      console.log($scope.data);
-
     });
 
   vm.createGoal = function() {
