@@ -17,7 +17,7 @@
       chart-data="data" chart-labels="labels">
     </canvas> 
     <br>
-  <p class="centertext"> You are {{goals.percent}}% done! </p>
+  <p ng-if="goals.tasks.length > 0" class="centertext"> You are {{goals.percent}}% done! </p>
   </div>
 </div>
 
