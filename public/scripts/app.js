@@ -131,7 +131,6 @@ function GoalsController ($http, $stateParams, $scope, $location, $state) {
     .then(function (response) {
       vm.tasks = [];
       vm.new_task = {};
-      // create algorithm here for calculating progress
 
       $scope.goal = response.data;
       vm.tasks = $scope.goal.tasks;
@@ -232,41 +231,50 @@ function HomeController ($http, Account, $scope) {
       vm.returnlabels();
 
       // extra bar showing up because numbers below
-      $scope.data = [
-      [65, 59, 80, 81, 56, 55, 40]
-      ];
+      // $scope.data = [[67, 67]];
 
-      // console.log(vm.goals[0].tasks.length);
-      // iterate through goals and get their number of tasks
-      //we need to iterate through to grab each goal, return goal
-
-      vm.goalsArray = [];
-      vm.grabGoal = function () {
-        for (var i = 0; i < vm.goals.length; i ++) {
-          goal = vm.goals[i].tasks.length;
-          vm.goalsArray.push(goal);
+      // grab number of completed tasks
+      vm.completeArray = [];
+      vm.completedTasks = function () {
+        var complete = 0;
+        for (var i = 0; i < vm.goals.length ; i++) {
+          for (var j = 0; j < vm.goals[i].tasks.length ; j ++ ) {
+            if (vm.goals[i].tasks[j].complete === true) {
+              complete ++;
+            }
+          }
+          vm.completeArray.push(complete);
+          complete = 0;
         }
-        console.log('goalsArray', vm.goalsArray);
+        console.log('number completed for each', vm.completeArray);
+        return vm.completeArray;
       };
 
-      vm.grabGoal(); 
-      // console.log("completedtask", vm.goals[0].tasks[0].complete);
+      vm.completedTasks();
+      //grab # of tasks per goal
+      vm.tasksArray = [];
+      vm.countTasks = function () {
+        for (var i = 0; i < vm.goals.length; i ++) {
+          tasksLength = vm.goals[i].tasks.length;
+          vm.tasksArray.push(tasksLength);
+        }
+        return vm.tasksArray;
+      };
+      vm.countTasks();
+      console.log('taskArray', vm.tasksArray);
 
-      //getting the completed tasks startes here
-      // vm.completedTasks = function () {
-      //   var complete = 0;
-      //   for (var i = 0; i < vm.goals.length ; i++) {
-      //     for (var j = 0; j < vm.goals[i].tasks.length ; j ++ ) {
-      //       if (vm.goals[i].tasks[j].complete === true) {
-      //         complete ++;
-      //       }
-      //     }
-      //   }
-      //   console.log('number completed', complete);
-      // };
+      // divide the two arrays to get percentage
+      vm.quotientArray = [];
+      vm.quotient = function () {
+        for (var i = 0; i < vm.completeArray.length; i ++) {
+          vm.quotientArray.push( Math.round((vm.completeArray[i] / vm.tasksArray[i]) * 100) );
+        }
+        return vm.quotientArray;
+      };
 
-      // vm.completedTasks();
-
+      vm.quotient();
+      console.log(vm.quotientArray);
+      $scope.data = [ vm.quotientArray ];
 
     });
 
