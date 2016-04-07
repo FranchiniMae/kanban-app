@@ -30,17 +30,17 @@
 
 
 <div id="addbutton" class="centertext buttonspace">
-  <button ng-click="goals.displayAddGoal = true">Add Goal</button>
+  <button ng-click="goals.displayAddTask = true">Add Task</button>
 </div>
 
-<div ng-show="goals.displayAddGoal">
+<div ng-show="goals.displayAddTask">
   <form ng-submit="goals.addTask()">
     <h3>Add a new task</h3>
     <div class="form-group">
       <label for="task-description">Description</label>
       <input type="text" class="form-control" placeholder="Description" ng-model="goals.new_task.description"></input>
     </div>
-    <button type="submit" ng-click="goals.displayAddGoal = false" class="btn btn-primary">Add Task</button>
+    <button type="submit" ng-click="goals.displayAddTask = false" class="btn btn-primary">Add Task</button>
   </form>
 </div>
 
