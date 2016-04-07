@@ -2,15 +2,17 @@
   <div class="row">
   <div class="col-md-6 col-md-offset-3"> 
     <div class="page-header">
-    <div class="centertext bottomspace">
+    <div class="centertext">
       <div id="goaltitle">{{goal.title}}</div>
-      <div id="goaldate">{{ goal.goalDate | date: 'MMMM dd, yyyy'}}</div>
+<!--       <div id="goaldate">{{ goal.goalDate | date: 'MMMM dd, yyyy'}}</div> -->
     </div>
 
     <p ng-show="main.currentUser()" ng-if="goal.tasks.length === 0">No tasks yet.</p>
 
 <div class="panel panel-warning">
-  <div class="panel-heading centertext">Your Progress</div>
+  <div class="panel-heading centertext">
+    Deadline: {{ goal.goalDate | date: 'MMMM dd, yyyy'}}
+  </div>
   <div class="panel-body">
      <canvas id="doughnut" class="chart chart-doughnut"
       chart-data="data" chart-labels="labels">
