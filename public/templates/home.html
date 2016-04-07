@@ -26,22 +26,30 @@
 	</div>
 </div>
 
+<br>
+<hr>
+<br>
+
+<button ng-click="home.displayAddForm = true">Add Goal</button>
+
 
 <div ng-show="main.currentUser()">
-	<br>
-	<h4>Add New Goal</h4>
-	<hr>
-	<form ng-show="main.currentUser()" ng-submit="home.createGoal()">
-		<div class="form-group">
-			<label for="goal-title">Title</label>
-			<input type="text" class="form-control" ng-model="home.new_goal.title" id="goal-title" placeholder="Title">
-		</div>
-		<div class="form-group">
-			<label for="goal-goalDate">Goal Date</label>
-			<input type="date" class="form-control" ng-model="home.new_goal.goalDate" id="goal-goalDate" placeholder="Goal Date">
-		</div>
-		<input type="submit" value="Add Goal" class="btn btn-default">
-	</form>
+	<div ng-show="home.displayAddForm">
+		<br>
+		<h4>Add New Goal</h4>
+		<hr>
+		<form ng-show="main.currentUser()" ng-submit="home.createGoal()">
+			<div class="form-group">
+				<label for="goal-title">Title</label>
+				<input type="text" class="form-control" ng-model="home.new_goal.title" id="goal-title" placeholder="Title">
+			</div>
+			<div class="form-group">
+				<label for="goal-goalDate">Goal Date</label>
+				<input type="date" class="form-control" ng-model="home.new_goal.goalDate" id="goal-goalDate" placeholder="Goal Date">
+			</div>
+			<input type="submit" ng-click="home.displayAddForm = false" value="Add Goal" class="btn btn-default">
+		</form>
+	</div>
 </div>
 
 
