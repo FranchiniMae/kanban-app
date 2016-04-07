@@ -1,7 +1,8 @@
   <div class="page-header">
-    <h3>
-        {{goal.title}}
-    </h3>
+  <div class="centertext bottomspace">
+    <h3>{{goal.title}}</h3>
+    <div id="goaldate">{{ goal.goalDate | date: 'MMMM dd, yyyy'}}</div>
+  </div>
 
   <p ng-show="main.currentUser()" ng-if="goal.tasks.length === 0">No tasks yet.</p>
 
