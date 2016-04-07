@@ -135,6 +135,34 @@ function GoalsController ($http, $stateParams, $scope, $location) {
       $scope.goal = response.data;
       vm.tasks = $scope.goal.tasks;
 
+      // testing here////////////////////////////////////
+
+      // getting the completed tasks startes here
+      var complete = 0;
+      vm.completedTasks = function () {
+        for (var i = 0; i < $scope.goal.tasks.length ; i++) {
+            if ($scope.goal.tasks[i].complete === true) {
+              complete ++;
+          }
+        }
+        console.log('number completed', complete);
+      };
+
+      vm.completedTasks();
+
+      //calculating perecentage
+      vm.percentage = function () {
+        var totalTasks = $scope.goal.tasks.length;
+        console.log('total tasks', totalTasks);
+        console.log('complete', complete);
+        var percent =  Math.round((complete  / totalTasks) * 100) ;
+        console.log('percentage', percent);
+      };
+
+      vm.percentage();
+
+      // end testing here!! /////////////////
+
       vm.addTask = function() {
         $http.post('/api/goals/' + goalId + '/tasks', vm.new_task)
           .then(function (response) {
@@ -171,36 +199,69 @@ function GoalsController ($http, $stateParams, $scope, $location) {
           });
       };
       // end checkbox information
-
-
     });
 }
 
 HomeController.$inject = ["$http", "Account", "$scope"]; // minification protection
 function HomeController ($http, Account, $scope) {
 
-  $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  $scope.series = ['Series A'];
-
-  $scope.data = [
-    [65, 59, 80, 81, 56, 55, 40]
-  ];
-
   var vm = this;
   vm.goals = [];
   vm.new_goal = {}; // form data
-  // vm.currentUser
-  vm.currentUser = null;
 
   $http.get('/api/me/goals')
     .then(function (response) {
       vm.goals = response.data;
-    });
+      $scope.labels = [];
 
-  // $http.get('/api/goals')
-  //   .then(function (response) {
-  //     vm.goals = response.data;
-  //   });
+      vm.returnlabels = function() {
+        for (var i = 0; i < vm.goals.length; i ++) {
+          goalTitle = vm.goals[i].title;
+          $scope.labels.push(goalTitle);
+        }
+        return $scope.labels;
+      };
+
+      vm.returnlabels();
+
+      // extra bar showing up because numbers below
+      $scope.data = [
+      [65, 59, 80, 81, 56, 55, 40]
+      ];
+
+      // console.log(vm.goals[0].tasks.length);
+      // iterate through goals and get their number of tasks
+      //we need to iterate through to grab each goal, return goal
+
+      vm.goalsArray = [];
+      vm.grabGoal = function () {
+        for (var i = 0; i < vm.goals.length; i ++) {
+          goal = vm.goals[i].tasks.length;
+          vm.goalsArray.push(goal);
+        }
+        console.log('goalsArray', vm.goalsArray);
+      };
+
+      vm.grabGoal(); 
+      // console.log("completedtask", vm.goals[0].tasks[0].complete);
+
+      //getting the completed tasks startes here
+      // vm.completedTasks = function () {
+      //   var complete = 0;
+      //   for (var i = 0; i < vm.goals.length ; i++) {
+      //     for (var j = 0; j < vm.goals[i].tasks.length ; j ++ ) {
+      //       if (vm.goals[i].tasks[j].complete === true) {
+      //         complete ++;
+      //       }
+      //     }
+      //   }
+      //   console.log('number completed', complete);
+      // };
+
+      // vm.completedTasks();
+
+
+    });
 
   vm.createGoal = function() {
     $http.post('/api/goals', vm.new_goal)
@@ -208,6 +269,7 @@ function HomeController ($http, Account, $scope) {
         vm.goals.push(response.data);
         console.log(response.data);
         vm.new_goal = {};
+        $scope.labels.push(response.data.title);
       });
   };
 
@@ -226,6 +288,7 @@ function HomeController ($http, Account, $scope) {
       .then(function (response) {
         var index = vm.goals.indexOf(goal);
         vm.goals.splice(index, 1);
+        $scope.labels.splice(index, 1);
       });
   };
 }
@@ -239,9 +302,7 @@ function LoginController ($location, Account) {
     Account
       .login(vm.new_user)
       .then(function(){
-        // TODO #4: clear sign up form
         vm.new_user = {};      
-        // TODO #5: redirect to '/profile'
         $location.path( '/profile' );
       });
   };
@@ -256,9 +317,7 @@ function SignupController ($location, Account) {
     Account
       .signup(vm.new_user)
       .then(function (response) {
-          // TODO #9: clear sign up form
           vm.new_user = {};
-          // TODO #10: redirect to '/profile'
           $location.path( '/profile' );
         }
       );
@@ -269,7 +328,6 @@ LogoutController.$inject = ["$location", "Account"]; // minification protection
 function LogoutController ($location, Account) {
   Account.logout();
   $location.path('/login');
-  // TODO #7: when the logout succeeds, redirect to the login page
 }
 
 
@@ -279,17 +337,13 @@ function ProfileController ($http, Account) {
   vm.new_profile = {}; // form data
 
   vm.updateProfile = function() {
-    // TODO #14: Submit the form using the relevant `Account` method
     Account
       .updateProfile(vm.new_profile)
       .then(function () {
-          // TODO #9: clear sign up form
           vm.showEditForm = false;
-          // TODO #10: redirect to '/profile'
         }
       );
   };
-    // On success, clear the form
 }
 
 //////////////
@@ -318,9 +372,6 @@ function Account($http, $q, $auth) {
         }
       )
     );
-    // TODO #8: signup (https://github.com/sahat/satellizer#authsignupuser-options)
-    // then, set the token (https://github.com/sahat/satellizer#authsettokentoken)
-    // returns a promise
   }
 
   function login(userData) {
@@ -346,12 +397,6 @@ function Account($http, $q, $auth) {
       .then(function () {
       self.user = null;
     });
-
-    // returns a promise!!!
-    // TODO #6: logout the user by removing their jwt token (using satellizer)
-    // Make sure to also wipe the user's data from the application:
-    // self.user = null;
-    // returns a promise!!!
   }
 
   function currentUser() {
@@ -391,7 +436,5 @@ function Account($http, $q, $auth) {
         )
     );
   }
-
-
 }
 
