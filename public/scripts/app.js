@@ -166,6 +166,22 @@ function GoalsController ($http, $stateParams, $scope, $location, $state) {
       $scope.labels = ["Progress", "Remaining"];
       $scope.data = [vm.percent, vm.remaining];
 
+      // GET TIME REMAINING // 
+
+      var fixedDate = $scope.goal.goalDate.split("T");
+      var newDate = fixedDate[0];
+
+      vm.currentDate = new Date();
+      vm.changedDate = new Date(newDate);
+      // vm.remaining = (vm.currentDate - vm.changedDate);
+
+      vm.difference = -(Math.round(((vm.currentDate - vm.changedDate) / (1000*60*60*24))));
+
+      console.log('difference', difference);
+
+
+      // END TIME REMAINING
+
       // end testing here!! /////////////////
 
       vm.addTask = function() {
@@ -229,9 +245,6 @@ function HomeController ($http, Account, $scope, $state) {
       };
 
       vm.returnlabels();
-
-      // extra bar showing up because numbers below
-      // $scope.data = [[67, 67]];
 
       // grab number of completed tasks
       vm.completeArray = [];
