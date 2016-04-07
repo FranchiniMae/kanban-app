@@ -3,6 +3,8 @@
         {{goal.title}}
     </h3>
 
+  <p ng-show="main.currentUser()" ng-if="goal.tasks.length === 0">No tasks yet.</p>
+
   <canvas id="doughnut" class="chart chart-doughnut"
     chart-data="data" chart-labels="labels">
   </canvas> 
