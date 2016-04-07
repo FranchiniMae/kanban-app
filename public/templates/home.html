@@ -11,7 +11,7 @@
 	<div ng-repeat="goal in home.goals">
 		<div class="allgoals" ng-hide="goal.displayEditForm">
 			<a ng-href="/goals/{{goal._id}}">{{goal.title}}</a>
-			 - {{goal.goalDate | date: 'MMMM dd, yyyy'}} <button ng-click="home.deleteGoal(goal)">Delete</button> <button ng-click="goal.displayEditForm = true">Edit</button></p>
+			 - {{goal.goalDate | date: 'MMMM dd, yyyy'}} <i class="fa fa-close" ng-click="home.deleteGoal(goal)"></i> <i class="fa fa-pencil" ng-click="goal.displayEditForm = true"></i></p>
 		 </div>
 
 		<form ng-show="goal.displayEditForm" ng-submit="home.updateGoal(goal)">
