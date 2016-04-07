@@ -208,8 +208,8 @@ function GoalsController ($http, $stateParams, $scope, $location, $state) {
     });
 }
 
-HomeController.$inject = ["$http", "Account", "$scope"]; // minification protection
-function HomeController ($http, Account, $scope) {
+HomeController.$inject = ["$http", "Account", "$scope", "$state"]; // minification protection
+function HomeController ($http, Account, $scope, $state) {
 
   var vm = this;
   vm.goals = [];
@@ -292,6 +292,7 @@ function HomeController ($http, Account, $scope) {
     $http.put('/api/goals/' + goal._id, updatedGoal)
       .then(function(response) {
         console.log("hitting this update frontend");
+        // $state.reload();
       });
   };
 
