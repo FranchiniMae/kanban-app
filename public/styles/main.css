@@ -4,10 +4,11 @@
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	margin-top: -2%;
+	margin-top: -6%;
 	height: 700px;
 	min-height: 100%;
 	width: 100%;
+/*	margin-bottom: -7%;*/
 }
 
 .centertext {
@@ -21,6 +22,7 @@
 .navbar-default {
 	background-color: #48525F;
 	border-color: #48525F;
+	margin-bottom: 6%;
 }
 
 .navbartext {
@@ -40,6 +42,7 @@
 	font-family: 'Economica', sans-serif;
 	font-size: 9em;
 	color: #8EC6D4;
+	margin-top: 5%;
 }
 
 #goaltitle {
