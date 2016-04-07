@@ -16,7 +16,8 @@ angular
       // return al goals
     };
 
-  }]);
+  }])
+  ;
 
 ////////////
 // ROUTES //
@@ -121,8 +122,8 @@ function MainController (Account) {
 
 }
 
-GoalsController.$inject = ["$http", "$stateParams", "$scope", "$location"];
-function GoalsController ($http, $stateParams, $scope, $location) {
+GoalsController.$inject = ["$http", "$stateParams", "$scope", "$location", "$state"];
+function GoalsController ($http, $stateParams, $scope, $location, $state) {
   var vm = this;
   var goalId = ($location.path().split("/")[2]);
 
@@ -146,6 +147,7 @@ function GoalsController ($http, $stateParams, $scope, $location) {
           }
         }
         console.log('number completed', complete);
+        return complete;
       };
 
       vm.completedTasks();
@@ -153,13 +155,17 @@ function GoalsController ($http, $stateParams, $scope, $location) {
       //calculating perecentage
       vm.percentage = function () {
         var totalTasks = $scope.goal.tasks.length;
-        console.log('total tasks', totalTasks);
-        console.log('complete', complete);
         var percent =  Math.round((complete  / totalTasks) * 100) ;
         console.log('percentage', percent);
+        return percent;
       };
+      vm.percent = vm.percentage();
+      vm.remaining = (100 - vm.percent);
 
-      vm.percentage();
+      console.log('percent outside function', vm.percent);
+
+      $scope.labels = ["Progress", "Remaining"];
+      $scope.data = [vm.percent, vm.remaining];
 
       // end testing here!! /////////////////
 
@@ -196,6 +202,7 @@ function GoalsController ($http, $stateParams, $scope, $location) {
         $http.put('/api/goals/' + goalId + '/tasks/' + taskId, updatedTask)
           .then(function (response) {
             console.log("updating after ajax");
+            $state.reload();
           });
       };
       // end checkbox information

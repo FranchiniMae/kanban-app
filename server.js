@@ -5,11 +5,10 @@ var express = require('express'),
     hbs = require('hbs'),
     mongoose = require('mongoose'),
     auth = require('./resources/auth'),
-    path = require('path'),
-    ProgressBar = require('progressbar.js');
+    path = require('path');
 
 // require and load dotenv
-require('dotenv').load();
+var dotenv = require('dotenv').load();
 
 // configure bodyParser (for receiving form data)
 app.use(bodyParser.urlencoded({ extended: true }));
