@@ -12,15 +12,6 @@
   <br>
   </div>
 
-  <form ng-submit="goals.addTask()">
-    <h3>Add a new task</h3>
-    <div class="form-group">
-      <label for="task-description">Description</label>
-      <input type="text" class="form-control" placeholder="Description" ng-model="goals.new_task.description"></input>
-    </div>
-    <button type="submit" class="btn btn-primary">Add Task</button>
-  </form>
-
   <div ng-repeat="task in goal.tasks">
     <div class="alltasks" ng-hide="task.displayEditForm">
       <input type="checkbox" name="complete" ng-model="task.complete" ng-change="goals.markComplete(task)"/>
@@ -37,4 +28,19 @@
      </form>
   </div>
 
+
+<div id="addbutton" class="centertext buttonspace">
+  <button ng-click="goals.displayAddGoal = true">Add Goal</button>
+</div>
+
+<div ng-show="goals.displayAddGoal">
+  <form ng-submit="goals.addTask()">
+    <h3>Add a new task</h3>
+    <div class="form-group">
+      <label for="task-description">Description</label>
+      <input type="text" class="form-control" placeholder="Description" ng-model="goals.new_task.description"></input>
+    </div>
+    <button type="submit" ng-click="goals.displayAddGoal = false" class="btn btn-primary">Add Task</button>
+  </form>
+</div>
 
