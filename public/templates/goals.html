@@ -9,13 +9,19 @@
 
     <p ng-show="main.currentUser()" ng-if="goal.tasks.length === 0">No tasks yet.</p>
 
-    <canvas id="doughnut" class="chart chart-doughnut"
+<div class="panel panel-warning">
+  <div class="panel-heading centertext">Your Progress</div>
+  <div class="panel-body">
+     <canvas id="doughnut" class="chart chart-doughnut"
       chart-data="data" chart-labels="labels">
     </canvas> 
+  </div>
+</div>
+
     <br>
     </div>
 
-    days remaining: {{goals.difference}}
+    days remaining: {{goals.difference}}<br>
 
     <div ng-repeat="task in goal.tasks">
       <div class="alltasks" ng-hide="task.displayEditForm">
@@ -34,7 +40,7 @@
     </div>
 
 
-  <div id="addbutton" class="centertext buttonspace">
+  <div id="addbutton" class="centertext bottomspace">
     <button ng-click="goals.displayAddTask = true">Add Task</button>
   </div>
 
@@ -46,7 +52,8 @@
         <input type="text" class="form-control" placeholder="Description" ng-model="goals.new_task.description"></input>
       </div>
       <button type="submit" ng-click="goals.displayAddTask = false" class="btn btn-primary">Add Task</button>
-    </form>
+    </form><br>
+    <button class="bottomspace" ng-click="goals.displayAddTask = false" value="Cancel" class="btn btn-default">Cancel</button>
   </div>
   </div>
   </div>

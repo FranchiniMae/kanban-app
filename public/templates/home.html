@@ -3,9 +3,16 @@
   <div class="col-md-6 col-md-offset-3"> 	
 	<div ng-show="!main.currentUser()" id="logintitle" class="centertext">KANBAN</div>
 
-	<canvas id="bar" class="chart chart-bar"
-	  chart-data="data" chart-labels="labels" chart-series="series" chart-colours="green">
-	</canvas>
+<div class="panel panel-success">
+  <div class="panel-heading centertext">Your Progress</div>
+  <div class="panel-body">
+    <canvas id="bar" class="chart chart-bar"
+		  chart-data="data" chart-labels="labels" chart-series="series" chart-colours="green">
+		</canvas>
+  </div>
+</div>
+
+
 	<br>
 	<br>
 	<p ng-show="main.currentUser()" ng-if="home.goals.length === 0">No goals yet.</p>
@@ -51,7 +58,9 @@
 					<input type="date" class="form-control" ng-model="home.new_goal.goalDate" id="goal-goalDate" placeholder="Goal Date">
 				</div>
 				<input type="submit" ng-click="home.displayAddForm = false" value="Add Goal" class="btn btn-default">
-			</form>
+			</form><br>
+				<button class="bottomspace" ng-click="home.displayAddForm = false" value="Cancel" class="btn btn-default">Cancel</button>
+			<br><br><br>
 		</div>
 	</div>
 	</div>

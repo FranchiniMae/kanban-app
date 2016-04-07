@@ -1,22 +1,28 @@
-<h3>{{main.currentUser().firstName | uppercase}}</h3>
-<hr>
-<p><strong>Email:</strong> {{main.currentUser().email}}</p>
-<p><strong>First Name:</strong> {{main.currentUser().firstName}}</p>
-<p><strong>Last Name:</strong> {{main.currentUser().lastName}}</p><br>
+ <div class="container">
+  <div class="row">
+  <div class="col-md-6 col-md-offset-3">  
+  <h3 class="centertext">{{main.currentUser().firstName | uppercase}}</h3>
+  <hr>
+  <p><strong>Email:</strong> {{main.currentUser().email}}</p>
+  <p><strong>First Name:</strong> {{main.currentUser().firstName}}</p>
+  <p><strong>Last Name:</strong> {{main.currentUser().lastName}}</p><br>
 
-<hr>
-<a href="#" ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>
+  <hr>
+  <a href="#" ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>
 
-<!-- TODO #13 -->
-<form ng-show="profile.showEditForm" ng-submit="profile.updateProfile()">
-   <div class="form-group">
-    <input type="text" ng-model="profile.new_profile.firstName" class="form-control" placeholder="First Name">
-  </div>
-  <div class="form-group">
-    <input type="text" ng-model="profile.new_profile.lastName" class="form-control" placeholder="Last Name">
-  </div>
-  <div class="form-group">
-    <input type="text" ng-model="profile.new_profile.email" class="form-control" placeholder="Email">
-  </div>
-  <input type="submit" value="Save Profile" class="btn btn-default">
-</form>
+  <!-- TODO #13 -->
+  <form ng-show="profile.showEditForm" ng-submit="profile.updateProfile()">
+     <div class="form-group">
+      <input type="text" ng-model="profile.new_profile.firstName" class="form-control" placeholder="First Name">
+    </div>
+    <div class="form-group">
+      <input type="text" ng-model="profile.new_profile.lastName" class="form-control" placeholder="Last Name">
+    </div>
+    <div class="form-group">
+      <input type="text" ng-model="profile.new_profile.email" class="form-control" placeholder="Email">
+    </div>
+    <input type="submit" value="Save Profile" class="btn btn-default">
+  </form>
+</div>
+</div>
+</div>
