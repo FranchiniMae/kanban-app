@@ -12,7 +12,6 @@
 		<div class="allgoals" ng-hide="goal.displayEditForm">
 			<a ng-href="/goals/{{goal._id}}">{{goal.title}}</a>
 			 - {{goal.goalDate | date: 'MMMM dd, yyyy'}} <button ng-click="home.deleteGoal(goal)">Delete</button> <button ng-click="goal.displayEditForm = true">Edit</button></p>
-			 {{goal.tasks.length}}
 		 </div>
 
 		<form ng-show="goal.displayEditForm" ng-submit="home.updateGoal(goal)">
