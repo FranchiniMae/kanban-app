@@ -1,10 +1,11 @@
 #login {
-	background: url("http://cdn-media-1.lifehack.org/wp-content/files/2014/11/Productive.jpg") no-repeat center center fixed;
+	background: url("http://40.media.tumblr.com/e05a95a61077b22ef756cd16ee77d43a/tumblr_nmegcdlVIP1tp4ut5o1_1280.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	margin-top: 0;
+	margin-top: -2%;
+	height: 700px;
 	min-height: 100%;
 	width: 100%;
 }
@@ -17,9 +18,22 @@
 	margin-bottom: 5%;
 }
 
+.navbar-default {
+	background-color: #48525F;
+	border-color: #48525F;
+}
+
+.navbartext {
+	color: #FFF;
+}
+
 .navbar-default .navbar-brand {
 	color: #8EC6D4;
 	font-weight: bold;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #FFF;
 }
 
 #logintitle {

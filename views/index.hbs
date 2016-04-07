@@ -73,23 +73,23 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/">HOME</a></li>
+          <li><a class="navbartext" href="/">HOME</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li ng-show="!main.currentUser()"><a ui-sref="signup">SIGN UP</a></li>
-          <li ng-show="!main.currentUser()"><a ui-sref="login">LOG IN</a></li>
-          <li ng-show="main.currentUser()"><a ui-sref="profile">\{{main.currentUser().firstName | uppercase}}</a></li>
-          <li ng-show="main.currentUser()"><a ui-sref="logout">LOG OUT</a></li>
+          <li ng-show="!main.currentUser()"><a class="navbartext" ui-sref="signup">SIGN UP</a></li>
+          <li ng-show="!main.currentUser()"><a class="navbartext" ui-sref="login">LOG IN</a></li>
+          <li ng-show="main.currentUser()"><a class="navbartext" ui-sref="profile">\{{main.currentUser().firstName | uppercase}}</a></li>
+          <li ng-show="main.currentUser()"><a class="navbartext" ui-sref="logout">LOG OUT</a></li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="container">
+{{!--   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-6 col-md-offset-3"> --}}
         <ui-view>
-      </div>
+{{!--       </div>
     </div>
-  </div>
+  </div> --}}
 </body>
 </html>
