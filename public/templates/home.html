@@ -17,10 +17,12 @@
 	<br>
 	<br>
 	<p ng-show="main.currentUser()" ng-if="home.goals.length === 0">No goals yet.</p>
-
+	<hr>
 	<div ng-if="home.goals.length > 0">
+		<h3 class="centertext">Current Goals</h3>
 		<div ng-repeat="goal in home.goals">
 			<div class="allgoals" ng-hide="goal.displayEditForm">
+			
 				<a ng-href="/goals/{{goal._id}}">{{goal.title}}</a>
 				 - {{goal.goalDate | date: 'MMMM dd, yyyy'}} <i class="fa fa-close" ng-click="home.deleteGoal(goal)"></i> <i class="fa fa-pencil" ng-click="goal.displayEditForm = true"></i></p>
 			 </div>
@@ -43,7 +45,7 @@
 
 	<div ng-show="main.currentUser()">
 	<div id="addbutton" class="centertext buttonspace">
-		<button ng-click="home.displayAddForm = true">Add Goal</button>
+		<button class="bottomspace" ng-click="home.displayAddForm = true">Add Goal</button>
 	</div>
 		<div ng-show="home.displayAddForm">
 			<br>

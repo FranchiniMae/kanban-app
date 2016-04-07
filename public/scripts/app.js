@@ -224,8 +224,8 @@ function GoalsController ($http, $stateParams, $scope, $location, $state) {
     });
 }
 
-HomeController.$inject = ["$http", "Account", "$scope", "$state"]; // minification protection
-function HomeController ($http, Account, $scope, $state) {
+HomeController.$inject = ["$http", "Account", "$scope", "$state", "$location"]; // minification protection
+function HomeController ($http, Account, $scope, $state, $location) {
 
   var vm = this;
   vm.goals = [];
@@ -296,6 +296,7 @@ function HomeController ($http, Account, $scope, $state) {
         console.log(response.data);
         vm.new_goal = {};
         $scope.labels.push(response.data.title);
+        // $location.path( '/home' );
       });
   };
 

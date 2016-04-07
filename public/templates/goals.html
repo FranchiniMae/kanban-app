@@ -4,14 +4,13 @@
     <div class="page-header">
     <div class="centertext">
       <div id="goaltitle">{{goal.title}}</div>
-<!--       <div id="goaldate">{{ goal.goalDate | date: 'MMMM dd, yyyy'}}</div> -->
     </div>
 
     <p ng-show="main.currentUser()" ng-if="goal.tasks.length === 0">No tasks yet.</p>
 
 <div class="panel panel-warning">
   <div class="panel-heading centertext">
-    Deadline: {{ goal.goalDate | date: 'MMMM dd, yyyy'}}
+    Your Progress for {{goal.title}}
   </div>
   <div class="panel-body">
      <canvas id="doughnut" class="chart chart-doughnut"
@@ -20,10 +19,18 @@
   </div>
 </div>
 
+<div class="panel panel-info">
+  <div class="panel-heading centertext">
+    Days Remaining from {{goal.goalDate | date: 'MMMM dd, yyyy' }}:
+  </div>
+  <div class="panel-body centertext">
+     You have <b>{{goals.difference}}</b> day(s) left! You got this!<br>
+    </canvas> 
+  </div>
+</div>
+
     <br>
     </div>
-
-    days remaining: {{goals.difference}}<br>
 
     <div ng-repeat="task in goal.tasks">
       <div class="alltasks" ng-hide="task.displayEditForm">
