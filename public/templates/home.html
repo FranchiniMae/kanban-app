@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="goalshow">
   <div class="row">
   <div class="col-md-6 col-md-offset-3"> 	
 	<div ng-show="!main.currentUser()" id="logintitle" class="centertext">KANBAN</div>
@@ -16,7 +16,7 @@
 
 	<br>
 	<br>
-	<p ng-show="main.currentUser()" ng-if="home.goals.length === 0">No goals yet.</p>
+	<p class="empty centertext" ng-show="main.currentUser()" ng-if="home.goals.length === 0">Let's add some goals!</p>
 	<hr>
 	<div ng-if="home.goals.length > 0">
 		<h3 class="centertext">Current Goals</h3>
