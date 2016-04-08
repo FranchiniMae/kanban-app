@@ -25,10 +25,14 @@
 
 			<div id="indivobj">
 				<div class="goal-infoDiv">
-					<a class="goal-name" ng-href="/goals/{{goal._id}}">{{goal.title}}</a>
+
+					<i class="fa fa-close" ng-click="home.deleteGoal(goal)"></i> 
+					<a class="goal-name" ng-href="/goals/{{goal._id}}"><b>{{goal.title}}</b></a>
 				 - {{goal.goalDate | date: 'MMMM dd, yyyy'}} 
 
-					 <i class="fa fa-close" ng-click="home.deleteGoal(goal)"></i> <i class="fa fa-pencil" ng-click="goal.displayEditForm = true"></i>
+					<div id="right">
+					<i class="fa fa-pencil" ng-click="goal.displayEditForm = true"></i></div>
+
 				</div>
 			</div>
 

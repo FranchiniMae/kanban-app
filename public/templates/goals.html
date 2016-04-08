@@ -43,9 +43,9 @@
       <input type="checkbox" name="complete" ng-model="task.complete" ng-change="goals.markComplete(task)"/>
       {{task.description}} 
       
-      
+      <div id="right">
       <i class="fa fa-close" ng-click="goals.deleteTask(task)"></i> <i class="fa fa-pencil" ng-click="task.displayEditForm = true"></i><br>
-
+      </div>
 
       </div>
     </div>

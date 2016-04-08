@@ -100,7 +100,7 @@
 	height: 50px;
 	border-bottom: 2px solid #BBBBB5;
 	vertical-align: middle;
-	color: black;
+	color: #606567;
 }
 
 a {
@@ -143,3 +143,10 @@ input[type=checkbox] {
 	border-radius: 0px;
 }
 
+.fa-close {
+	color: #ff4c4c;
+}
+
+#right {
+	float: right;
+}
