@@ -47,6 +47,7 @@ app.put('/api/me', auth.ensureAuthenticated, function (req, res) {
     user.firstName = req.body.firstName || user.firstName;
     user.lastName = req.body.lastName || user.lastName;
     user.email = req.body.email || user.email;
+    user.picture = req.body.picture || user.picture;
     user.save(function(err) {
       res.send(user.populate('goals'));
     });

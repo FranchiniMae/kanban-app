@@ -7,8 +7,8 @@
   <p><strong>First Name:</strong> {{main.currentUser().firstName}}</p>
   <p><strong>Last Name:</strong> {{main.currentUser().lastName}}</p><br>
 
-  <img ng-src="{{main.currentUser().picture}}">
-  {{main.currentUser().picture}}
+  
+  <img class="pic img-rounded" src="{{main.currentUser().picture}}">
 
   <hr>
   <a href="#" ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>
