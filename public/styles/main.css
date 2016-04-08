@@ -10,7 +10,7 @@
       rgba(0, 0, 0, 0.2)
     ),
 
-    url(http://eskipaper.com/images/fantastic-stairs-wallpaper-1.jpg);
+    url(http://williamwelsh.co/wp-content/uploads/2014/05/cropped-typewriter-at-desk.jpg);
     height: 93vh;
 		width: 100%;
 		margin-top: -6%;
@@ -22,6 +22,10 @@
 	height: 93vh;
 	width: 100%;
 	overflow-y: auto;
+}
+
+.info {
+	font-family: 'Economica', sans-serif;
 }
 
 .centertext {
@@ -54,7 +58,7 @@
 #logintitle {
 	font-family: 'Economica', sans-serif;
 	font-size: 9em;
-	color: #8EC6D4;
+	color: #D7E3E4;
 	margin-top: 5%;
 }
 
@@ -149,4 +153,8 @@ input[type=checkbox] {
 
 #right {
 	float: right;
+}
+
+.top {
+	margin-top: -2%;
 }

@@ -1,9 +1,16 @@
+
 <div class="container" id="goalshow">
   <div class="row">
   <div class="col-md-6 col-md-offset-3"> 	
-	<div ng-show="!main.currentUser()" id="logintitle" class="centertext">TIVITY</div>
+	<div ng-show="!main.currentUser()" id="logintitle" class="centertext">'TIVITY</div>
 
-	<h3 class="appcolor centertext">Welcome {{main.currentUser().firstName | uppercase}}!</h3><br>
+	<div ng-show="!main.currentUser()">
+		<h1 class="centertext info">The app that keeps you accountable!</h1>
+	</div>
+
+
+	<div ng-show="main.currentUser()">
+	<h3 class="appcolor centertext" id="goaltitle">Welcome {{main.currentUser().firstName | uppercase}}!</h3><br>
 
 	<div class="panel panel-success">
 	  <div class="panel-heading centertext">{{main.currentUser().firstName | uppercase }}'s Progress</div>
@@ -14,11 +21,10 @@
 			</canvas>
 	  </div>
 	</div>
-
-
+	</div>
+<hr>
 	<p class="empty centertext" ng-show="main.currentUser()" ng-if="home.goals.length === 0">Let's add some goals!</p>
-<!-- 	<hr>
- -->	<div ng-if="home.goals.length > 0">
+<div ng-if="home.goals.length > 0">
 		<h3 class="centertext appcolor bottomspace">Current Goals</h3>
 		<div ng-repeat="goal in home.goals">
 			<div class="allgoals" ng-hide="goal.displayEditForm">
@@ -56,7 +62,7 @@
 	</div>
 
 	<br>
-	<hr>
+	<!-- <hr> -->
 	<br>
 
 	<div ng-show="main.currentUser()">
@@ -88,5 +94,6 @@
 	</div>
 	</div>
 </div>
+
 
 

@@ -3,7 +3,7 @@
    <div class="col-md-6 col-md-offset-3"> 
   <div>  
 
-    <h3 class="centertext">{{main.currentUser().firstName | uppercase}}</h3>
+    <h3 class="centertext" id="goaltitle">{{main.currentUser().firstName | uppercase}} {{main.currentUser().lastName | uppercase}}</h3>
     <hr>
 
 <div class="centertext">
@@ -29,6 +29,7 @@
       <input type="text" ng-model="profile.new_profile.email" class="form-control" placeholder="Email">
     </div>
     <div class="centertext">
+      <b>Picture: </b><br>
       <input id="profileimg" type="hidden" role="uploadcare-uploader"
          data-crop="disabled" /><br><br>
       <input type="submit" value="Save Profile" class="btn btn-info">
