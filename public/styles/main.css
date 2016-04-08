@@ -81,3 +81,22 @@
 	color: #E6EFF5;
 }
 
+.example {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	color: #fff;
+}
+
+.example li:nth-child(odd) {
+	background-color: #34495e;
+}
+
+.example li:nth-child(even) {
+	background-color: #2c3e50;
+}
+
+.form-control {
+	border-radius: 0px;
+}
+
