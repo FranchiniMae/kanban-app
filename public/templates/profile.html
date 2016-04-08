@@ -7,6 +7,9 @@
   <p><strong>First Name:</strong> {{main.currentUser().firstName}}</p>
   <p><strong>Last Name:</strong> {{main.currentUser().lastName}}</p><br>
 
+  <img ng-src="{{main.currentUser().picture}}">
+  {{main.currentUser().picture}}
+
   <hr>
   <a href="#" ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>
 
@@ -21,6 +24,8 @@
     <div class="form-group">
       <input type="text" ng-model="profile.new_profile.email" class="form-control" placeholder="Email">
     </div>
+    <input id="profileimg" type="hidden" role="uploadcare-uploader"
+       data-crop="disabled" />
     <input type="submit" value="Save Profile" class="btn btn-default">
   </form>
 </div>

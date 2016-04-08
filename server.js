@@ -177,7 +177,8 @@ app.post('/auth/signup', function (req, res) {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      picture: req.body.picture
     });
     user.save(function (err, result) {
       if (err) {

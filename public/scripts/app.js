@@ -241,6 +241,8 @@ function HomeController ($http, Account, $scope, $state, $location) {
           goalTitle = vm.goals[i].title;
           $scope.labels.push(goalTitle);
         }
+        window.labels = $scope.labels;
+        window.data = $scope.data;
         return $scope.labels;
       };
 
@@ -338,10 +340,12 @@ function LoginController ($location, Account) {
 
 SignupController.$inject = ["$location", "Account"]; // minification protection
 function SignupController ($location, Account) {
+  var widget = uploadcare.initialize('#profileimg');
   var vm = this;
   vm.new_user = {}; // form data
 
   vm.signup = function() {
+    vm.new_user.picture = $('#profileimg').val();
     Account
       .signup(vm.new_user)
       .then(function (response) {
@@ -361,10 +365,14 @@ function LogoutController ($location, Account) {
 
 ProfileController.$inject = ["$http", "Account"]; // minification protection
 function ProfileController ($http, Account) {
+  var widget = uploadcare.initialize('#profileimg');
+
   var vm = this;
   vm.new_profile = {}; // form data
 
   vm.updateProfile = function() {
+    vm.new_profile.picture = $('#profileimg').val();
+    console.log('new profile', vm.new_profile);
     Account
       .updateProfile(vm.new_profile)
       .then(function () {

@@ -1,23 +1,17 @@
 #login {
-	background: url("http://40.media.tumblr.com/e05a95a61077b22ef756cd16ee77d43a/tumblr_nmegcdlVIP1tp4ut5o1_1280.jpg") no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+	background: url("../images/dark_geometric.png");
 	margin-top: -6%;
-	height: 710px;
-	min-height: 100%;
+	height: 93vh;
 	width: 100%;
-/*	margin-bottom: -7%;*/
+	overflow-y: auto;
 }
 
 #goalshow {
 	background: url("../images/brillant.png");
 	margin-top: -6%;
-/*	height: 710px;*/
-	min-height: 100%;
+	height: 93vh;
 	width: 100%;
-/*	margin-bottom: -7%;*/
+	overflow-y: auto;
 }
 
 .centertext {
