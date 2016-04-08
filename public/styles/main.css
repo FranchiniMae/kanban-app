@@ -103,9 +103,9 @@
 #indivgoal {
 	width: 100%;
 	height: 50px;
-	border-bottom: 1px solid #48525F;
-	border-top: 1px solid #48525F;
+	border-bottom: 2px solid grey;
 	vertical-align: middle;
+	color: grey;
 }
 
 a {
@@ -115,6 +115,10 @@ a {
 .goal-infoDiv {
 	line-height: 50px;
 	font-size: 1.2em;
+}
+
+.hello {
+	margin-left: 50%;
 }
 
 

@@ -122,8 +122,8 @@ function MainController (Account) {
 
 }
 
-GoalsController.$inject = ["$http", "$stateParams", "$scope", "$location", "$state"];
-function GoalsController ($http, $stateParams, $scope, $location, $state) {
+GoalsController.$inject = ["$http", "$stateParams", "$scope", "$location", "$state", "$window"];
+function GoalsController ($http, $stateParams, $scope, $location, $state, $window) {
   var vm = this;
   var goalId = ($location.path().split("/")[2]);
 
@@ -189,6 +189,7 @@ function GoalsController ($http, $stateParams, $scope, $location, $state) {
           .then(function (response) {
             vm.tasks.push(response.data.tasks[(response.data.tasks.length) - 1]);
             vm.new_task = {};
+            $state.reload();
           });
       };
 
@@ -207,6 +208,7 @@ function GoalsController ($http, $stateParams, $scope, $location, $state) {
           .then(function (response) {
             var taskindex = vm.tasks.indexOf(task);
             vm.tasks.splice(taskindex, 1);
+            $state.reload();
           });
       };
 
