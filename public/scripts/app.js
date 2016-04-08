@@ -1,5 +1,5 @@
 angular
-  .module('kanbanApp', [
+  .module('tivityApp', [
     'ui.router', 'satellizer', 'chart.js'])
   .controller('MainController', MainController)
   .controller('HomeController', HomeController)
@@ -126,6 +126,10 @@ GoalsController.$inject = ["$http", "$stateParams", "$scope", "$location", "$sta
 function GoalsController ($http, $stateParams, $scope, $location, $state, $window) {
   var vm = this;
   var goalId = ($location.path().split("/")[2]);
+
+  $scope.labels = ["Progress", "Remaining"];
+  $scope.data = [0, 0];
+
 
   $http.get('/api/goals/' + goalId)
     .then(function (response) {

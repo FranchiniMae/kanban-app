@@ -1,17 +1,22 @@
  <div class="container" id="goalshow">
   <div class="row">
-  <div class="col-md-6 col-md-offset-3">  
-  <h3 class="centertext">{{main.currentUser().firstName | uppercase}}</h3>
-  <hr>
-  <p><strong>Email:</strong> {{main.currentUser().email}}</p>
-  <p><strong>First Name:</strong> {{main.currentUser().firstName}}</p>
-  <p><strong>Last Name:</strong> {{main.currentUser().lastName}}</p><br>
+   <div class="col-md-6 col-md-offset-3"> 
+  <div>  
 
-  
-  <img class="pic img-rounded" src="{{main.currentUser().picture}}">
+    <h3 class="centertext">{{main.currentUser().firstName | uppercase}}</h3>
+    <hr>
 
-  <hr>
-  <a href="#" ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>
+<div class="centertext">
+    <img class="pic img-circle" src="{{main.currentUser().picture}}"><br><br>
+
+    <p><strong>Email:</strong> {{main.currentUser().email}}</p>
+    <p><strong>First Name:</strong> {{main.currentUser().firstName}}</p>
+    <p><strong>Last Name:</strong> {{main.currentUser().lastName}}</p><br>
+  <a href="#" ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="btn btn-info"><i class="fa fa-pencil"></i> Edit Profile</a>
+  </div>
+
+
+
 
   <form ng-show="profile.showEditForm" ng-submit="profile.updateProfile()">
      <div class="form-group">
@@ -23,10 +28,13 @@
     <div class="form-group">
       <input type="text" ng-model="profile.new_profile.email" class="form-control" placeholder="Email">
     </div>
-    <input id="profileimg" type="hidden" role="uploadcare-uploader"
-       data-crop="disabled" />
-    <input type="submit" value="Save Profile" class="btn btn-default">
+    <div class="centertext">
+      <input id="profileimg" type="hidden" role="uploadcare-uploader"
+         data-crop="disabled" /><br><br>
+      <input type="submit" value="Save Profile" class="btn btn-info">
+    </div>
   </form>
+</div>
 </div>
 </div>
 </div>

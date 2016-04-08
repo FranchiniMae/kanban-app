@@ -1,33 +1,34 @@
 <div class="container" id="goalshow">
   <div class="row">
   <div class="col-md-6 col-md-offset-3"> 	
-	<div ng-show="!main.currentUser()" id="logintitle" class="centertext">KANBAN</div>
+	<div ng-show="!main.currentUser()" id="logintitle" class="centertext">TIVITY</div>
 
-<h3 class="appcolor">Welcome {{main.currentUser().firstName | uppercase}}!</h3><br>
+	<h3 class="appcolor">Welcome {{main.currentUser().firstName | uppercase}}!</h3><br>
 
-<div class="panel panel-success">
-  <div class="panel-heading centertext">{{main.currentUser().firstName | uppercase }}'s Progress</div>
+	<div class="panel panel-success">
+	  <div class="panel-heading centertext">{{main.currentUser().firstName | uppercase }}'s Progress</div>
 
-  <div class="panel-body">
-    <canvas id="bar" class="chart chart-bar"
-		  chart-data="data" chart-labels="labels" chart-series="series" chart-colours="green">
-		</canvas>
-  </div>
-</div>
+	  <div class="panel-body">
+	    <canvas id="bar" class="chart chart-bar"
+			  chart-data="data" chart-labels="labels" chart-series="series" chart-colours="green">
+			</canvas>
+	  </div>
+	</div>
+
 
 	<p class="empty centertext" ng-show="main.currentUser()" ng-if="home.goals.length === 0">Let's add some goals!</p>
-	<hr>
-	<div ng-if="home.goals.length > 0">
+<!-- 	<hr>
+ -->	<div ng-if="home.goals.length > 0">
 		<h3 class="centertext appcolor bottomspace">Current Goals</h3>
 		<div ng-repeat="goal in home.goals">
 			<div class="allgoals" ng-hide="goal.displayEditForm">
 
-			<div id="indivgoal">
+			<div id="indivobj">
 				<div class="goal-infoDiv">
 					<a class="goal-name" ng-href="/goals/{{goal._id}}">{{goal.title}}</a>
 				 - {{goal.goalDate | date: 'MMMM dd, yyyy'}} 
 
-					 <i class="hello fa fa-close" ng-click="home.deleteGoal(goal)"></i> <i class="fa fa-pencil" ng-click="goal.displayEditForm = true"></i>
+					 <i class="fa fa-close" ng-click="home.deleteGoal(goal)"></i> <i class="fa fa-pencil" ng-click="goal.displayEditForm = true"></i>
 				</div>
 			</div>
 
@@ -55,7 +56,7 @@
 	</div>
 		<div ng-show="home.displayAddForm">
 			<h4 class="centertext appcolor">Add New Goal</h4>
-			<hr>
+			<!-- <hr> -->
 			<form ng-show="main.currentUser()" ng-submit="home.createGoal()">
 				<div class="form-group">
 					<label for="goal-title" class="appcolor">Title</label>
@@ -65,9 +66,13 @@
 					<label for="goal-goalDate" class="appcolor">Deadline</label>
 					<input type="date" class="form-control" ng-model="home.new_goal.goalDate" id="goal-goalDate" placeholder="Goal Date" required>
 				</div>
-				<input type="submit" ng-click="home.displayAddForm = false" value="Add Goal" class="btn btn-default centertext">
+				<div class="centertext">
+					<input type="submit" ng-click="home.displayAddForm = false" value="Add Goal" class="btn btn-info centertext">
+				</div>
 			</form><br>
-				<button ng-click="home.displayAddForm = false" value="Cancel" class="bottomspace btn btn-default">Cancel</button>
+			<div class="centertext">
+				<button ng-click="home.displayAddForm = false" value="Cancel" class="bottomspace btn btn-danger">Cancel</button>
+			</div>
 			<br><br><br>
 		</div>
 	</div>

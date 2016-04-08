@@ -21,7 +21,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'hbs');
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost/kanban');
+mongoose.connect('mongodb://localhost/tivity');
 
 // require User and Post models
 var User = require('./models/user');
