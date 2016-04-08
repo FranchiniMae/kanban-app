@@ -13,7 +13,6 @@
   <hr>
   <a href="#" ng-click="profile.showEditForm=true" ng-hide="profile.showEditForm" class="btn btn-default"><i class="fa fa-pencil"></i> Edit Profile</a>
 
-  <!-- TODO #13 -->
   <form ng-show="profile.showEditForm" ng-submit="profile.updateProfile()">
      <div class="form-group">
       <input type="text" ng-model="profile.new_profile.firstName" class="form-control" placeholder="First Name">

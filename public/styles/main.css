@@ -54,6 +54,10 @@
 	margin-bottom: 4%;
 }
 
+#percent {
+	color: #D09D23;
+}
+
 #goodstatus {
 	color: #56C74A;
 	font-size: 1.5em;
