@@ -137,3 +137,8 @@ input[type=checkbox] {
 	border-radius: 0px;
 }
 
+.btn-primary {
+	background-color: #48525F;
+	border-color: #48525F;
+}
+
