@@ -304,7 +304,6 @@ function HomeController ($http, Account, $scope, $state, $location) {
         console.log(response.data);
         vm.new_goal = {};
         $scope.labels.push(response.data.title);
-        // $location.path( '/home' );
       });
   };
 
@@ -314,7 +313,7 @@ function HomeController ($http, Account, $scope, $state, $location) {
     $http.put('/api/goals/' + goal._id, updatedGoal)
       .then(function(response) {
         console.log("hitting this update frontend");
-        // $state.reload();
+        $state.reload();
       });
   };
 
