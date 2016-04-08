@@ -52,12 +52,18 @@
   </div>
 
       <form ng-show="task.displayEditForm" ng-submit="goals.updateTask(task)">
-        <h3>Edit Goal</h3>
+        <h3>Edit Task</h3>
          <div class="form-group">
            <input type="text" ng-model="task.description" class="form-control" placeholder="Description">
          </div>
          
-         <input type="submit" value="Save Task" class="btn btn-default"  ng-click="task.displayEditForm = false"><br><br>
+        <div class="centertext">
+         <input type="submit" value="Save Task" class="btn btn-info"  ng-click="task.displayEditForm = false">
+        </div><br>
+
+        <div class="centertext">
+          <button ng-click="task.displayEditForm = false" value="Cancel" class="btn btn-danger bottomspace">Cancel</button>
+        </div>
        </form>
     </div>
 

@@ -40,8 +40,13 @@
 		       <input type="text" ng-model="goal.title" class="form-control" placeholder="Title">
 		       <input type="date" ng-model="goal.goalDate" class="form-control" placeholder="Goal Date">
 		     </div>
-
-		     <input type="submit" value="Save Goal" class="btn btn-default"  ng-click="goal.displayEditForm = false"><br><br>
+			
+				 <div class="centertext">
+		     	<input type="submit" value="Save Goal" class="btn btn-info"  ng-click="goal.displayEditForm = false">
+		     </div><br>
+		     <div class="centertext">
+					<button ng-click="goal.displayEditForm = false" value="Cancel" class="bottomspace btn btn-danger">Cancel</button>
+				</div>
 		   </form>
 		</div>
 	</div>
