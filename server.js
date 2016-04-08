@@ -5,7 +5,8 @@ var express = require('express'),
     hbs = require('hbs'),
     mongoose = require('mongoose'),
     auth = require('./resources/auth'),
-    path = require('path');
+    path = require('path'),
+    port = process.env.PORT || 3000;
 
 // require and load dotenv
 var dotenv = require('dotenv').load();
@@ -215,6 +216,6 @@ app.get('*', function (req, res) {
 /*
  * Listen on localhost:3000
  */
-app.listen(3000, function() {
-  console.log('connected to port 3000');
+app.listen(port, function() {
+  console.log('connected to port', port);
 });
