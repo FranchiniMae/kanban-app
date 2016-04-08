@@ -1,7 +1,7 @@
 #'TIVITY
 =====
 ###Heroku: 
-Link coming soon. 
+[TIVITY](https://tivity-app.herokuapp.com/)
 
 ###I. Description: 
 
