@@ -63,7 +63,7 @@
 
 
   <div id="addbutton" class="centertext bottomspace"><br>
-    <button class="btn btn-default" ng-click="goals.displayAddTask = true">Add Task</button>
+    <button class="btn btn-primary" ng-click="goals.displayAddTask = true">Add Task</button>
   </div>
 
   <div ng-show="goals.displayAddTask">
@@ -73,9 +73,14 @@
         <label for="task-description">Description</label>
         <input type="text" class="form-control" placeholder="Description" ng-model="goals.new_task.description"></input>
       </div>
-      <button type="submit" class="btn btn-primary">Add Task</button>
+
+    <div class="centertext">
+      <button type="submit" class="btn btn-info">Add Task</button>
+    </div>
     </form><br>
-    <button class="bottomspace" ng-click="goals.displayAddTask = false" value="Cancel" class="btn btn-default">Cancel</button>
+    <div class="centertext">
+      <button ng-click="goals.displayAddTask = false" value="Cancel" class="btn btn-danger bottomspace">Cancel</button>
+    </div>
   </div>
   </div>
   </div>
