@@ -54,7 +54,7 @@
       <form ng-show="task.displayEditForm" ng-submit="goals.updateTask(task)">
         <h3>Edit Task</h3>
          <div class="form-group">
-           <input type="text" ng-model="task.description" class="form-control" placeholder="Description">
+           <input type="text" ng-model="task.description" class="form-control" placeholder="Description" required>
          </div>
          
         <div class="centertext">
@@ -77,7 +77,7 @@
       <h3>Add a new task</h3>
       <div class="form-group">
         <label for="task-description">Description</label>
-        <input type="text" class="form-control" placeholder="Description" ng-model="goals.new_task.description"></input>
+        <input type="text" class="form-control" placeholder="Description" ng-model="goals.new_task.description" required></input>
       </div>
 
     <div class="centertext">

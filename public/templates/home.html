@@ -37,8 +37,8 @@
 			<form ng-show="goal.displayEditForm" ng-submit="home.updateGoal(goal)">
 				<h3>Edit Goal</h3>
 		     <div class="form-group">
-		       <input type="text" ng-model="goal.title" class="form-control" placeholder="Title">
-		       <input type="date" ng-model="goal.goalDate" class="form-control" placeholder="Goal Date">
+		       <input type="text" ng-model="goal.title" class="form-control" placeholder="Title" required>
+		       <input type="date" ng-model="goal.goalDate" class="form-control" placeholder="Goal Date" required>
 		     </div>
 			
 				 <div class="centertext">
