@@ -132,8 +132,6 @@ function GoalsController ($http, $stateParams, $scope, $location, $state, $windo
       $scope.goal = response.data;
       vm.tasks = $scope.goal.tasks;
 
-      // testing here////////////////////////////////////
-
       // grabbing the number of completed tasks
       var complete = 0;
       vm.completedTasks = function () {
@@ -163,23 +161,19 @@ function GoalsController ($http, $stateParams, $scope, $location, $state, $windo
       $scope.labels = ["Progress", "Remaining"];
       $scope.data = [vm.percent, vm.remaining];
 
-      // GET TIME REMAINING // 
+      // calculating time remaining  
 
       var fixedDate = $scope.goal.goalDate.split("T");
       var newDate = fixedDate[0];
 
       vm.currentDate = new Date();
       vm.changedDate = new Date(newDate);
-      // vm.remaining = (vm.currentDate - vm.changedDate);
 
       vm.difference = -(Math.round(((vm.currentDate - vm.changedDate) / (1000*60*60*24))));
 
       console.log('difference', vm.difference);
 
-
-      // END TIME REMAINING
-
-      // end testing here!! /////////////////
+      // front-end CRUD
 
       vm.addTask = function() {
         $http.post('/api/goals/' + goalId + '/tasks', vm.new_task)
@@ -209,7 +203,7 @@ function GoalsController ($http, $stateParams, $scope, $location, $state, $windo
           });
       };
 
-      // start checkbox information
+      // checkbox function
       vm.markComplete = function(task) {
         var updatedTask = task;
         var taskId = task._id;
@@ -219,7 +213,6 @@ function GoalsController ($http, $stateParams, $scope, $location, $state, $windo
             $state.reload();
           });
       };
-      // end checkbox information
     });
 }
 
@@ -411,11 +404,10 @@ function Account($http, $q, $auth) {
   function login(userData) {
     return (
       $auth
-        .login(userData) // login (https://github.com/sahat/satellizer#authloginuser-options)
+        .login(userData)
         .then(
           function onSuccess(response) {
             $auth.setToken(response.data.token);
-            //TODO #3: set token (https://github.com/sahat/satellizer#authsettokentoken)
           },
 
           function onError(error) {
