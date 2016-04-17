@@ -1,18 +1,15 @@
 #login {
-/*	background: url("../images/dark_geometric.png");
-	margin-top: -6%;
-	height: 93vh;
-	width: 100%;
-	overflow-y: auto;*/
+	overflow-y: auto;
 	  background:  
     linear-gradient(
       rgba(0, 0, 0, 0.2), 
       rgba(0, 0, 0, 0.2)
     ),
 
-    url(http://williamwelsh.co/wp-content/uploads/2014/05/cropped-typewriter-at-desk.jpg);
+    url(../images/tiv1.jpeg);
     height: 93vh;
 		width: 100%;
+		background-size: cover;
 		margin-top: -6%;
 }
 

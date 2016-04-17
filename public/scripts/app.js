@@ -10,13 +10,6 @@ angular
   .controller('GoalsController', GoalsController)
   .service('Account', Account)
   .config(configRoutes)
-  .factory('goalService', [function () {
-    var goalService = {};
-    goalService.query = function() {
-      // return al goals
-    };
-
-  }])
   ;
 
 ////////////
@@ -141,7 +134,7 @@ function GoalsController ($http, $stateParams, $scope, $location, $state, $windo
 
       // testing here////////////////////////////////////
 
-      // getting the completed tasks startes here
+      // grabbing the number of completed tasks
       var complete = 0;
       vm.completedTasks = function () {
         for (var i = 0; i < $scope.goal.tasks.length ; i++) {
@@ -155,7 +148,7 @@ function GoalsController ($http, $stateParams, $scope, $location, $state, $windo
 
       vm.completedTasks();
 
-      //calculating perecentage
+      // calculating perecentage
       vm.percentage = function () {
         var totalTasks = $scope.goal.tasks.length;
         var percent =  Math.round((complete  / totalTasks) * 100) ;
