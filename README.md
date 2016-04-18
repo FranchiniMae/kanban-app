@@ -17,8 +17,8 @@
 * Satellizer
 * Uploadcare
 * Google Fonts
-* CSS
-* HTML
+* CSS3
+* HTML5
 
 ####III. Unsolved Problems:
 
