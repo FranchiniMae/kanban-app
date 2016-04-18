@@ -14,6 +14,7 @@
 * Angular
 * Angular-Chart.js
 * MongoDB
+* Satellizer
 * Uploadcare
 * Google Fonts
 * CSS
