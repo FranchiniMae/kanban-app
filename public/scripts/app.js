@@ -154,7 +154,6 @@ function GoalsController ($http, $location, $scope, $state, $stateParams, $windo
       $scope.data = [vm.percent, vm.remaining];
 
       // calculating time remaining  
-
       var fixedDate = $scope.goal.goalDate.split("T"),
           newDate = fixedDate[0],
           changedDate = new Date(newDate), 
@@ -163,7 +162,6 @@ function GoalsController ($http, $location, $scope, $state, $stateParams, $windo
       vm.difference = -(Math.round(((currentDate - changedDate) / (1000*60*60*24))));
 
       // Task CRUD Functions
-
       vm.addTask = function() {
         $http.post('/api/goals/' + goalId + '/tasks', vm.new_task)
           .then(function (response) {
@@ -186,14 +184,13 @@ function GoalsController ($http, $location, $scope, $state, $stateParams, $windo
         var taskId = task._id;
         $http.delete('/api/goals/' + goalId + '/tasks/' + taskId)
           .then(function (response) {
-            var taskindex = vm.tasks.indexOf(task);
-            vm.tasks.splice(taskindex, 1);
+            var taskIndex = vm.tasks.indexOf(task);
+            vm.tasks.splice(taskIndex, 1);
             $state.reload();
           });
       };
 
-      // Functions for marking tasks complete
-
+      // Function for marking tasks complete
       vm.markComplete = function(task) {
         var updatedTask = task;
         var taskId = task._id;
