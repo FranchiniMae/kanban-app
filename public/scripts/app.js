@@ -122,7 +122,7 @@ function GoalsController ($http, $location, $scope, $state, $stateParams, $windo
 
   $http.get('/api/goals/' + goalId)
     .then(function (response) {
-      vm.tasks = [];
+      
       vm.new_task = {};
 
       $scope.goal = response.data;
@@ -130,44 +130,37 @@ function GoalsController ($http, $location, $scope, $state, $stateParams, $windo
 
       // grabbing the number of completed tasks
       var complete = 0;
-      vm.completedTasks = function () {
+      var completedTasks = function () {
         for (var i = 0; i < $scope.goal.tasks.length ; i++) {
             if ($scope.goal.tasks[i].complete === true) {
               complete ++;
           }
         }
-        console.log('number completed', complete);
         return complete;
       };
 
-      vm.completedTasks();
+      completedTasks();
 
       // calculating perecentage
-      vm.percentage = function () {
+      var findPercentage = function () {
         var totalTasks = $scope.goal.tasks.length;
-        var percent =  Math.round((complete  / totalTasks) * 100) ;
-        console.log('percentage', percent);
-        return percent;
+        var percentageComplete =  Math.round((complete  / totalTasks) * 100) ;
+        return percentageComplete;
       };
-      vm.percent = vm.percentage();
+      vm.percent = findPercentage();
       vm.remaining = (100 - vm.percent);
-
-      console.log('percent outside function', vm.percent);
 
       $scope.labels = ["Progress", "Remaining"];
       $scope.data = [vm.percent, vm.remaining];
 
       // calculating time remaining  
 
-      var fixedDate = $scope.goal.goalDate.split("T");
-      var newDate = fixedDate[0];
+      var fixedDate = $scope.goal.goalDate.split("T"),
+          newDate = fixedDate[0],
+          changedDate = new Date(newDate), 
+          currentDate = new Date();
 
-      vm.currentDate = new Date();
-      vm.changedDate = new Date(newDate);
-
-      vm.difference = -(Math.round(((vm.currentDate - vm.changedDate) / (1000*60*60*24))));
-
-      console.log('difference', vm.difference);
+      vm.difference = -(Math.round(((currentDate - changedDate) / (1000*60*60*24))));
 
       // front-end CRUD
 
