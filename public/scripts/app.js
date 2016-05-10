@@ -162,7 +162,7 @@ function GoalsController ($http, $location, $scope, $state, $stateParams, $windo
 
       vm.difference = -(Math.round(((currentDate - changedDate) / (1000*60*60*24))));
 
-      // front-end CRUD
+      // Task CRUD Functions
 
       vm.addTask = function() {
         $http.post('/api/goals/' + goalId + '/tasks', vm.new_task)
@@ -178,7 +178,7 @@ function GoalsController ($http, $location, $scope, $state, $stateParams, $windo
         var taskId = task._id;
         $http.put('/api/goals/' + goalId + '/tasks/' + taskId, updatedTask)
           .then(function (response) {
-            console.log("updating after ajax");
+            console.log("Successfully updated task!");
           });
       }; 
 
@@ -192,13 +192,13 @@ function GoalsController ($http, $location, $scope, $state, $stateParams, $windo
           });
       };
 
-      // checkbox function
+      // Functions for marking tasks complete
+
       vm.markComplete = function(task) {
         var updatedTask = task;
         var taskId = task._id;
         $http.put('/api/goals/' + goalId + '/tasks/' + taskId, updatedTask)
           .then(function (response) {
-            console.log("updating after ajax");
             $state.reload();
           });
       };
