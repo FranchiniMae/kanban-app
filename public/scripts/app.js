@@ -19,7 +19,7 @@ angular
 configRoutes.$inject = ["$stateProvider", "$urlRouterProvider", "$locationProvider"]; // minification protection
 function configRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
 
-  //this allows us to use routes without hash params!
+  // this allows us to use routes without hash params!
   $locationProvider.html5Mode({
     enabled: true,
     requireBase: false
@@ -119,10 +119,6 @@ GoalsController.$inject = ["$http", "$stateParams", "$scope", "$location", "$sta
 function GoalsController ($http, $stateParams, $scope, $location, $state, $window) {
   var vm = this;
   var goalId = ($location.path().split("/")[2]);
-
-  $scope.labels = ["Progress", "Remaining"];
-  $scope.data = [0, 0];
-
 
   $http.get('/api/goals/' + goalId)
     .then(function (response) {
