@@ -115,8 +115,8 @@ function MainController (Account) {
 
 }
 
-GoalsController.$inject = ["$http", "$stateParams", "$scope", "$location", "$state", "$window"];
-function GoalsController ($http, $stateParams, $scope, $location, $state, $window) {
+GoalsController.$inject = ["$http", "$location", "$scope", "$state", "$stateParams", "$window"];
+function GoalsController ($http, $location, $scope, $state, $stateParams, $window) {
   var vm = this;
   var goalId = ($location.path().split("/")[2]);
 
