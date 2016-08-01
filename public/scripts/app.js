@@ -1,6 +1,6 @@
 angular
   .module('tivityApp', [
-    'ui.router', 'satellizer', 'chart.js'])
+    'chart.js', 'ui.router', 'satellizer'])
   .controller('MainController', MainController)
   .controller('HomeController', HomeController)
   .controller('LoginController', LoginController)
